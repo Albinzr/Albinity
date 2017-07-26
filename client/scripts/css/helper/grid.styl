@@ -1,0 +1,38 @@
+.container
+  width 90%
+  margin 0 auto
+  display block
+
+
+$grid ?= {
+  gutter: 0
+  columns: 12
+  padding: 20*px
+}
+.grid
+  float: left
+  box-sizing: border-box
+  border-left: $grid.gutter solid transparent
+  padding-left: ($grid.padding / 2)
+  padding-right: ($grid.padding / 2)
+  margin-left: -($grid.gutter)
+
+  &-split
+    padding-right: 0
+    padding-left: 0
+
+  &-right
+    float: right
+
+  &-center
+    float: none
+    margin-left: auto
+    margin-right: auto
+
+for $column in 1..$grid.columns
+
+  .grid-{$column}
+    width: unit(($column / $grid.columns) * 100, '%')
+
+  // .grid_prefix_{$column}
+  //   margin-left: unit(($column / $grid.columns) * 100, '%')

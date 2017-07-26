@@ -1,0 +1,32 @@
+//NOTE: - Font
+
+goldenRatioLineHeight(font-size, content-width)
+  phi = 1.618033989
+  two-phi = 2 * phi
+  one-over-two-phi = 1 / two-phi
+  width-ratio = content-width / ((font-size * phi) ** 2)
+  one-minus-width-ratio = 1 - width-ratio
+  height-factor = phi - (one-over-two-phi * one-minus-width-ratio)
+  line-height = round(height-factor * font-size)
+
+goldenRatio(font-size, content-width)
+  font-size font-size
+  width content-width
+  line-height goldenRatioLineHeight(font-size, content-width)
+
+//NOTE: - Ascept Ratio
+
+ aspect-ratio(width, height)
+  position: relative;
+  &:before
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: (height / width) * 100%;
+
+  > .content
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
