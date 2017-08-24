@@ -1,64 +1,75 @@
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import React, { Component } from 'react';
-import draftToHtml from 'draftjs-to-html';
-import { Editor } from 'react-draft-wysiwyg';
-import { convertToRaw } from 'draft-js';
+import React, { Component } from "react"
+import ReactQuill from "react-quill"
 
-import uploadImageCallBack from './uploadImageCallBack';
+class Editor extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			editorHtml: "",
+			theme: "snow"
+		}
+		this.handleChange = this.handleChange.bind(this)
+	}
 
-class MyEditor extends Component {
+	handleChange(html) {
+		this.setState({
+			editorHtml: html
+		})
+	}
 
-  state: any = {
-    editorContents: [],
-    html: ""
-  };
-
-  onEditorStateChange: Function = (index, editorContent) => {
-    let editorContents = this.state.editorContents;
-    editorContents[index] = editorContent;
-    editorContents = [...editorContents];
-    console.log(this.state.html);
-    this.setState({
-      editorContents,
-      html: editorContents[0] && draftToHtml(convertToRaw(editorContents[0].getCurrentContent()))
-    });
-  };
-
-  render() {
-    const {editorContents} = this.state;
-    return (
-      <div className="editor">
-      <Editor
-      wrapperClassName="demo-wrapper-wide"
-      editorClassName="demo-editor"
-      hashtag={{}}
-      editorState={editorContents[0]}
-      wrapperClassName="demo-wrapper"
-      onEditorStateChange={this.onEditorStateChange.bind(this, 0)}
-      toolbar={{
-        image: {
-          uploadCallback: uploadImageCallBack
-        },
-        inline: {
-          inDropdown: true
-        },
-        list: {
-          inDropdown: true
-        },
-        textAlign: {
-          inDropdown: true
-        },
-        link: {
-          inDropdown: true
-        },
-        history: {
-          inDropdown: true
-        }
-      }}
-      />
-  </div>
-      );
-  }
+	render() {
+		return (
+			<div>
+				<ReactQuill
+					theme={this.state.theme}
+					onChange={this.handleChange}
+					value={this.state.editorHtml}
+					modules={Editor.modules}
+					formats={Editor.formats}
+					bounds={".app"}
+					placeholder={this.props.placeholder}
+				/>
+			</div>
+		)
+	}
 }
 
-export default MyEditor;
+/*
+ * Quill modules to attach to editor
+ * See https://quilljs.com/docs/modules/ for complete options
+ */
+Editor.modules = {
+	toolbar: [
+		["bold", "italic", "underline", "strike"], // toggled buttons
+		[{ header: 1 }, { header: 2 }],
+		["blockquote", "code-block"],
+		["link", "image", "video"],
+		[{ list: "ordered" }, { list: "bullet" }],
+		[{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+		[{ size: [] }], // custom dropdown
+		[{ header: [1, 2, 3, 4, 5, 6, false] }],
+		[{ color: [] }, { background: [] }], // dropdown with defaults from theme
+		[{ align: [] }],
+		[{ script: "sub" }, { script: "super" }], // superscript/subscript
+		["clean"] // remove formatting button
+	]
+}
+
+// Editor.formats = [
+// 	"header",
+// 	"font",
+// 	"size",
+// 	"bold",
+// 	"italic",
+// 	"underline",
+// 	"strike",
+// 	"blockquote",
+// 	"list",
+// 	"bullet",
+// 	"indent",
+// 	"link",
+// 	"image",
+// 	"video"
+// ]
+
+export default Editor

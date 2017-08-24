@@ -1,33 +1,34 @@
-import React from "react";
+import React from "react"
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "../components/homeComponent/homeComponent.js";
-import Login from "../components/loginComponent/loginComponent.js";
-import Dashboard from "../components/dashboardComponent/dashboardComponent.js";
-import Header from "../components/headerComponent/headerComponent.js";
-import Footer from "../components/footerComponent/footerComponent.js";
-import DetailedPost from "../components/detailedPostComponent/detailedPostComponent.js";
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import Home from "../components/homeComponent/homeComponent.js"
+import Login from "../components/loginComponent/loginComponent.js"
+import Dashboard from "../components/dashboardComponent/dashboardComponent.js"
+import Header from "../components/headerComponent/headerComponent.js"
+import Footer from "../components/footerComponent/footerComponent.js"
+import DetailedPost from "../components/detailedPostComponent/detailedPostComponent.js"
 const isAuthenticated = () => {
-  return true;
-};
+	return true
+}
 
 const router = (
-<Router>
+	<Router>
+		<div>
+			<Header />
 
-	<div>
-        <Header/>
-
-		<Route exact={true} path="/" component={Home} />
-		<Route path="/Home" component={Home} />
-		<Route path="/login" component={Login} />
-        <Route path="/login" component={Login} />
-        <Route path="/dashboard" component={Dashboard} onEnter={isAuthenticated} />
-        <Route path="/post" component={DetailedPost} />
-        <Footer/>
-
-	</div>
-
+			<Route exact={true} path="/" component={Home} />
+			<Route path="/home" component={Home} />
+			<Route path="/login" component={Login} />
+			<Route path="/login" component={Login} />
+			<Route
+				path="/dashboard"
+				component={Dashboard}
+				onEnter={isAuthenticated}
+			/>
+			<Route path="/post/:slug" component={DetailedPost} />
+			<Footer />
+		</div>
 	</Router>
-);
+)
 
-export default router;
+export default router

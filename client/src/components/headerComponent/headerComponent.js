@@ -40,14 +40,14 @@ class App extends Component {
       <nav>
 
           <div className="navbar">
-              
+
               <div className="inner-navbar">
 
                   <div className="logo">
                       <img></img>
                   </div>
 
-                  <div className="menu">
+                  <div className="header-menu">
                      <ul>
                          <li>Category</li>
                          <li>Shop</li>
@@ -67,7 +67,7 @@ class App extends Component {
                   <div className="search">
                       <ul>
                           <li>S</li>
-                          <li><input type="text" class="field" name="search" placeholder="SEARCH" /></li>
+                          <li><input type="text" className="field" name="search" placeholder="SEARCH" /></li>
                       </ul>
                   </div>
 
