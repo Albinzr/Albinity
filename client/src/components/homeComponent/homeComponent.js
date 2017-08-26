@@ -81,7 +81,9 @@ class App extends Component {
 					<div className="post-header">
 						<ul>
 							<li className="post-data">
-								{" "}{formateDate(post.publishedDate)}{" "}
+								&nbsp; &nbsp; &nbsp;
+								{formateDate(post.publishedDate)}
+								&nbsp; &nbsp; &nbsp;
 							</li>
 							<li className="post-title">
 								{post.heading}

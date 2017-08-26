@@ -100,13 +100,13 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="detailed-post">
 				<div className="post-header">
 					<ul>
 						<li className="post-data">
-							{" "}{this.formateDate(
-								this.state.post.publishedDate
-							)}{" "}
+							&nbsp; &nbsp; &nbsp;
+							{this.formateDate(this.state.post.publishedDate)}
+							&nbsp; &nbsp; &nbsp;
 						</li>
 						<li className="post-title">
 							{this.state.post.heading}

@@ -23,18 +23,12 @@ class App extends Component {
 		this.modules = {
 			toolbar: {
 				container: [
+					[{ header: 1 }],
 					["bold", "italic", "underline", "strike"], // toggled buttons
-					[{ header: 1 }, { header: 2 }],
-					["blockquote", "code-block"],
+					["blockquote"],
 					["link", "video", "image"],
 					[{ list: "ordered" }, { list: "bullet" }],
-					[{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-					[{ size: [] }], // custom dropdown
-					[{ header: [1, 2, 3, 4, 5, 6, false] }],
-					[{ color: [] }, { background: [] }], // dropdown with defaults from theme
-					[{ align: [] }],
-					[{ script: "sub" }, { script: "super" }], // superscript/subscript
-					["clean"]
+					[{ align: [] }]
 				],
 				handlers: {
 					image: this.imageHandler
@@ -157,15 +151,15 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="dashboard-container">
 				<input
 					type="text"
 					placeholder="Heading"
 					onChange={this.handleHeading}
 				/>
-				<input
+				<textarea
 					type="text"
-					placeholder="Sub heading"
+					placeholder="Description / Summary"
 					onChange={this.handSubHeading}
 				/>
 				<ReactQuill
@@ -178,15 +172,11 @@ class App extends Component {
 					bounds={".app"}
 					placeholder={this.props.placeholder}
 				/>
-				<button onClick={this.save}>Save</button>
+				<button className="dashboard-save" onClick={this.save}>
+					Save
+				</button>
 			</div>
 		)
 	}
 }
-
-/*
-  * Quill modules to attach to editor
-  * See https://quilljs.com/docs/modules/ for complete options
-  */
-
 export default App

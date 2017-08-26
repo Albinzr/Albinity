@@ -41,35 +41,16 @@ class Editor extends React.Component {
 Editor.modules = {
 	toolbar: [
 		["bold", "italic", "underline", "strike"], // toggled buttons
-		[{ header: 1 }, { header: 2 }],
-		["blockquote", "code-block"],
+		[{ header: 1 }],
+		["blockquote"],
 		["link", "image", "video"],
 		[{ list: "ordered" }, { list: "bullet" }],
-		[{ indent: "-1" }, { indent: "+1" }], // outdent/indent
 		[{ size: [] }], // custom dropdown
-		[{ header: [1, 2, 3, 4, 5, 6, false] }],
 		[{ color: [] }, { background: [] }], // dropdown with defaults from theme
 		[{ align: [] }],
 		[{ script: "sub" }, { script: "super" }], // superscript/subscript
 		["clean"] // remove formatting button
 	]
 }
-
-// Editor.formats = [
-// 	"header",
-// 	"font",
-// 	"size",
-// 	"bold",
-// 	"italic",
-// 	"underline",
-// 	"strike",
-// 	"blockquote",
-// 	"list",
-// 	"bullet",
-// 	"indent",
-// 	"link",
-// 	"image",
-// 	"video"
-// ]
 
 export default Editor

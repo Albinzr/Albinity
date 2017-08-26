@@ -3,11 +3,32 @@
     padding: 25px 0 18px;
     background-color: #f8f8f8;
     position: relative;
+    font-family: 'merriweather-sans-light';
+    line-height: 1.58;
+
 
     .post-data
         width: 100%;
         text-align: center;
         color: #C0BCBC;
+        font-family 'opensans-light'
+        font-size 13px
+
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        &:before,&:after
+            position: absolute;
+            top: 51%;
+            overflow: hidden;
+            width: 5%;
+            height: 1px;
+            content: '\a0';
+            background-color: red;
+        &:before
+            margin-left: -5%;
+            text-align: right;
+
 
     .post-title
         width: 100%;
@@ -16,25 +37,27 @@
         color: #000;
         font-size: 37px;
         text-transform: uppercase;
-        font-family: 'proxima-nova';
+        font-family: 'merriweather-sans-light';
         letter-spacing: 0.2em;
         font-weight: 400;
+        font-size 37px
+        font-weight bolder
 
     .post-category
         width: 100%;
         text-align: center;
         margin: 0 0 0 0;
         color: #C0BCBC;
+        font-size 13px
+
 
 .post-container
     width 95%
     max-width:  950px
     margin 0 auto
     .post-media
-        overflow: hidden;
-
+        overflow: hidden
         max-width:950px
-        max-height:650px
     img
         background-color: lightGray
         margin 0 auto
@@ -66,7 +89,7 @@
                 padding-left 10px
                 color: #C0BCBC;
                 text-transform: uppercase;
-                font-family: 'proxima-nova';
+                font-family: 'merriweather-sans-light';
                 letter-spacing: 0.3em;
                 font-size: 12px;
                 font-weight: 400;
@@ -81,7 +104,7 @@
             padding: 7px 33px;
             text-transform: uppercase;
             text-decoration: none;
-            font-family: 'proxima-nova';
+            font-family: 'merriweather-sans-light';
             letter-spacing: 0.2em;
             font-size: 12px;
             font-weight: 400;
@@ -97,7 +120,7 @@
             padding-left 10px
             color: #C0BCBC;
             text-transform: uppercase;
-            font-family: 'proxima-nova';
+            font-family: 'merriweather-sans-light';
             letter-spacing: 0.3em;
             font-size: 12px;
             font-weight: 400;
