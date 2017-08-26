@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import ReactQuill from "react-quill"
+var NotificationSystem = require("react-notification-system")
 import $ from "jquery"
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
 			theme: "snow",
 			delta: ""
 		}
+
 		this.handleChange = this.handleChange.bind(this)
 		this.handleHeading = this.handleHeading.bind(this)
 		this.handSubHeading = this.handSubHeading.bind(this)
@@ -50,6 +52,7 @@ class App extends Component {
 			}
 		}
 	}
+	alert() {}
 
 	imageHandler = (image, callback) => {
 		var range = this.quillRef.getEditor().getSelection()
@@ -156,6 +159,7 @@ class App extends Component {
 					type="text"
 					placeholder="Heading"
 					onChange={this.handleHeading}
+					required
 				/>
 				<textarea
 					type="text"
@@ -171,10 +175,12 @@ class App extends Component {
 					formats={this.formats}
 					bounds={".app"}
 					placeholder={this.props.placeholder}
+					required
 				/>
-				<button className="dashboard-save" onClick={this.save}>
+				<button className="dashboard-save" onClick={this.alert}>
 					Save
 				</button>
+				<NotificationSystem ref="notificationSystem" />
 			</div>
 		)
 	}

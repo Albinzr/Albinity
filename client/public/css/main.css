@@ -210,7 +210,6 @@ button:disabled {
   font-family: 'opensans-light';
   font-size: 13px;
   position: relative;
-  z-index: 1;
   overflow: hidden;
 }
 .post-header .post-data:before,
@@ -221,7 +220,7 @@ button:disabled {
   width: 5%;
   height: 1px;
   content: '\a0';
-  background-color: #f00;
+  background-color: #e7e7e7;
 }
 .post-header .post-data:before {
   margin-left: -5%;
@@ -330,6 +329,9 @@ button:disabled {
   width: 95%;
   margin: 0 auto;
 }
+.dashboard-container .ql-editor {
+  min-height: 560px;
+}
 .dashboard-container input,
 .dashboard-container textarea {
   width: calc(100% - 39px);
@@ -383,7 +385,7 @@ button:disabled {
   color: rgba(0,0,0,0.8);
 }
 .quill .ql-container {
-  min-height: calc(100vh - 735px);
+  width: 100%;
 }
 .quill .ql-snow {
   border: 1px solid rgba(204,204,204,0.25) !important;
@@ -566,7 +568,6 @@ button:disabled {
   transform: translateY(-10px);
 }
 .quill .ql-snow .ql-formats {
-  display: inline-block;
   vertical-align: middle;
 }
 .quill .ql-snow .ql-formats:after {
@@ -823,6 +824,7 @@ button:disabled {
   box-sizing: border-box;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 8px;
+  display: flex;
 }
 .quill .ql-toolbar.ql-snow .ql-formats {
   margin-right: 15px;
@@ -966,7 +968,7 @@ nav {
   text-transform: uppercase;
   color: #838383;
   line-height: 80px;
-  font-family: 'proxima-nova';
+  font-family: 'merriweather-sans-light';
   letter-spacing: 0.33em;
   font-weight: 400;
 }
@@ -1004,7 +1006,7 @@ nav {
   background-color: transparent;
   color: #838383;
   padding: 0 0 0 10px;
-  font-family: 'proxima-nova';
+  font-family: 'merriweather-sans-bold';
   letter-spacing: 0.33em;
   font-size: 12px;
   font-weight: 400;

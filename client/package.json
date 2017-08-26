@@ -7,7 +7,9 @@
     "react": "^15.6.1",
     "react-color": "^2.13.3",
     "react-dom": "^15.6.1",
-    "react-quill": "v1.0.0"
+    "react-notification-system": "^0.2.15",
+    "react-quill": "v1.0.0",
+    "react-s-alert": "^1.3.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",

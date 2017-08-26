@@ -13,4 +13,25 @@
   <body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
     <div id="root"></div>
   </body>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+  <script>
+  $(document).scroll(function() {
+	checkOffset()
+})
+
+function checkOffset() {
+	if (
+		$(".ql-toolbar").offset().top + $(".ql-toolbar").height() <=
+		$(".footer").offset().top
+	) {
+		$(".ql-toolbar").css("position", "absoluted")
+	} else {
+		$(".ql-toolbar").css("position", "fixed")
+		// restore when you scroll up
+	}
+}
+</script>
 </html>
