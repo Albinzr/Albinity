@@ -228,6 +228,8 @@ button:disabled {
 }
 .post-header .post-title {
   width: 100%;
+}
+.post-header .post-title a {
   text-align: center;
   padding: 3px 0;
   color: #000;
@@ -238,6 +240,7 @@ button:disabled {
   font-weight: 400;
   font-size: 37px;
   font-weight: bolder;
+  text-decoration: none;
 }
 .post-header .post-category {
   width: 100%;
@@ -250,6 +253,7 @@ button:disabled {
   width: 95%;
   max-width: 950px;
   margin: 0 auto;
+  margin-bottom: 45px;
 }
 .post-container .post-media {
   overflow: hidden;
@@ -300,14 +304,22 @@ button:disabled {
 .post-container .post-continue-reading li {
   display: block;
   border: 1px solid #e9e9e9;
-  padding: 7px 33px;
+  margin-top: 2px;
+}
+.post-container .post-continue-reading li a {
   text-transform: uppercase;
   text-decoration: none;
   font-family: 'merriweather-sans-light';
   letter-spacing: 0.2em;
   font-size: 12px;
   font-weight: 400;
-  color: #000;
+  color: #c0bcbc;
+  padding: 7px 33px;
+  display: block;
+}
+.post-container .post-continue-reading li a:hover {
+  background-color: #c0bcbc;
+  color: #fff;
 }
 .post-container .post-comments {
   float: left;
@@ -419,14 +431,103 @@ button:disabled {
 .quill a {
   color: #000;
 }
-.quill .ql-snow.ql-toolbar:after,
-.quill .ql-snow .ql-toolbar:after {
+.dashboard-tag-container {
+  margin-top: 25px;
+  width: calc(100% - 13px);
+}
+.dashboard-tag-container input {
+  height: 20px;
+  padding-left: 0;
+  font-size: 18px;
+}
+.dashboard-tag-container .tags-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  margin-bottom: 15px;
+  width: 100%;
+  min-height: 34px;
+  padding: 2px 5px;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: transparent;
+  border: 1px solid rgba(204,204,204,0.25);
+  border-radius: 1px;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.dashboard-tag-container input.tag-input {
+  -webkit-box-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  border: 0;
+  outline: 0;
+}
+.dashboard-tag-container .tag {
+  position: relative;
+  margin: 8px 6px 8px 0;
+  padding: 2px 20px 4px 8px;
+  font-size: inherit;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  background-color: #317caf;
+  border-radius: 3px;
+  -webkit-transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+  cursor: default;
+}
+.dashboard-tag-container .tag:first-child {
+  margin-left: 0;
+}
+.dashboard-tag-container .tag--marked {
+  background-color: #6fadd7;
+}
+.dashboard-tag-container .tag__name {
+  margin-right: 3px;
+}
+.dashboard-tag-container .tag__remove {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 100%;
+  padding: 0 5px;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-transition: opacity 0.3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  -ms-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  opacity: 0.5;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+  line-height: 1;
+}
+.dashboard-tag-container .tag__remove:hover {
+  opacity: 1;
+}
+.dashboard-tag-container .tag__remove:active {
+  display: hidden;
+}
+.ql-snow.ql-toolbar:after,
+.ql-snow .ql-toolbar:after {
   clear: both;
   content: '';
   display: table;
 }
-.quill .ql-snow.ql-toolbar button,
-.quill .ql-snow .ql-toolbar button {
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
   background: none;
   border: none;
   cursor: pointer;
@@ -436,119 +537,119 @@ button:disabled {
   padding: 3px 5px;
   width: 28px;
 }
-.quill .ql-snow.ql-toolbar button svg,
-.quill .ql-snow .ql-toolbar button svg {
+.ql-snow.ql-toolbar button svg,
+.ql-snow .ql-toolbar button svg {
   float: left;
   height: 100%;
 }
-.quill .ql-snow.ql-toolbar button:active:hover,
-.quill .ql-snow .ql-toolbar button:active:hover {
+.ql-snow.ql-toolbar button:active:hover,
+.ql-snow .ql-toolbar button:active:hover {
   outline: none;
 }
-.quill .ql-snow.ql-toolbar input.ql-image[type=file],
-.quill .ql-snow .ql-toolbar input.ql-image[type=file] {
+.ql-snow.ql-toolbar input.ql-image[type=file],
+.ql-snow .ql-toolbar input.ql-image[type=file] {
   display: none;
 }
-.quill .ql-snow.ql-toolbar button:hover,
-.quill .ql-snow .ql-toolbar button:hover,
-.quill .ql-snow.ql-toolbar button.ql-active,
-.quill .ql-snow .ql-toolbar button.ql-active,
-.quill .ql-snow.ql-toolbar .ql-picker-label:hover,
-.quill .ql-snow .ql-toolbar .ql-picker-label:hover,
-.quill .ql-snow.ql-toolbar .ql-picker-label.ql-active,
-.quill .ql-snow .ql-toolbar .ql-picker-label.ql-active,
-.quill .ql-snow.ql-toolbar .ql-picker-item:hover,
-.quill .ql-snow .ql-toolbar .ql-picker-item:hover,
-.quill .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
-.quill .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+.ql-snow.ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:hover,
+.ql-snow.ql-toolbar button.ql-active,
+.ql-snow .ql-toolbar button.ql-active,
+.ql-snow.ql-toolbar .ql-picker-label:hover,
+.ql-snow .ql-toolbar .ql-picker-label:hover,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.ql-snow.ql-toolbar .ql-picker-item:hover,
+.ql-snow .ql-toolbar .ql-picker-item:hover,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected {
   color: #06c;
 }
-.quill .ql-snow.ql-toolbar button:hover .ql-fill,
-.quill .ql-snow .ql-toolbar button:hover .ql-fill,
-.quill .ql-snow.ql-toolbar button.ql-active .ql-fill,
-.quill .ql-snow .ql-toolbar button.ql-active .ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-label:hover .ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-item:hover .ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-item:hover .ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-fill,
-.quill .ql-snow.ql-toolbar button:hover .ql-stroke.ql-fill,
-.quill .ql-snow .ql-toolbar button:hover .ql-stroke.ql-fill,
-.quill .ql-snow.ql-toolbar button.ql-active .ql-stroke.ql-fill,
-.quill .ql-snow .ql-toolbar button.ql-active .ql-stroke.ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
-.quill .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
-.quill .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
+.ql-snow.ql-toolbar button:hover .ql-fill,
+.ql-snow .ql-toolbar button:hover .ql-fill,
+.ql-snow.ql-toolbar button.ql-active .ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+.ql-snow.ql-toolbar button:hover .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar button:hover .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
   fill: #06c;
 }
-.quill .ql-snow.ql-toolbar button:hover .ql-stroke,
-.quill .ql-snow .ql-toolbar button:hover .ql-stroke,
-.quill .ql-snow.ql-toolbar button.ql-active .ql-stroke,
-.quill .ql-snow .ql-toolbar button.ql-active .ql-stroke,
-.quill .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
-.quill .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
-.quill .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
-.quill .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
-.quill .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
-.quill .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
-.quill .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
-.quill .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
-.quill .ql-snow.ql-toolbar button:hover .ql-stroke-miter,
-.quill .ql-snow .ql-toolbar button:hover .ql-stroke-miter,
-.quill .ql-snow.ql-toolbar button.ql-active .ql-stroke-miter,
-.quill .ql-snow .ql-toolbar button.ql-active .ql-stroke-miter,
-.quill .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
-.quill .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
-.quill .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
-.quill .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
-.quill .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
-.quill .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
-.quill .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
-.quill .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow .ql-toolbar button:hover .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.ql-snow.ql-toolbar button:hover .ql-stroke-miter,
+.ql-snow .ql-toolbar button:hover .ql-stroke-miter,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke-miter,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+.ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+.ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+.ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+.ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
+.ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
   stroke: #06c;
 }
 @media (pointer: coarse) {
-  .quill .ql-snow.ql-toolbar button:hover:not(.ql-active),
-  .quill .ql-snow .ql-toolbar button:hover:not(.ql-active) {
+  .ql-snow.ql-toolbar button:hover:not(.ql-active),
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) {
     color: #444;
   }
-  .quill .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-fill,
-  .quill .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-fill,
-  .quill .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill,
-  .quill .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill {
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-fill,
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-fill,
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill,
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill {
     fill: #444;
   }
-  .quill .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke,
-  .quill .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke,
-  .quill .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter,
-  .quill .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter {
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke,
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke,
+  .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter,
+  .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter {
     stroke: #444;
   }
 }
-.quill .ql-snow {
+.ql-snow {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.quill .ql-snow * {
+.ql-snow * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.quill .ql-snow .ql-hidden {
+.ql-snow .ql-hidden {
   display: none;
 }
-.quill .ql-snow .ql-out-bottom,
-.quill .ql-snow .ql-out-top {
+.ql-snow .ql-out-bottom,
+.ql-snow .ql-out-top {
   visibility: hidden;
 }
-.quill .ql-snow .ql-tooltip {
+.ql-snow .ql-tooltip {
   position: absolute;
   -webkit-transform: translateY(10px);
   -moz-transform: translateY(10px);
@@ -556,65 +657,65 @@ button:disabled {
   -o-transform: translateY(10px);
   transform: translateY(10px);
 }
-.quill .ql-snow .ql-tooltip a {
+.ql-snow .ql-tooltip a {
   cursor: pointer;
   text-decoration: none;
 }
-.quill .ql-snow .ql-tooltip.ql-flip {
+.ql-snow .ql-tooltip.ql-flip {
   -webkit-transform: translateY(-10px);
   -moz-transform: translateY(-10px);
   -ms-transform: translateY(-10px);
   -o-transform: translateY(-10px);
   transform: translateY(-10px);
 }
-.quill .ql-snow .ql-formats {
+.ql-snow .ql-formats {
   vertical-align: middle;
 }
-.quill .ql-snow .ql-formats:after {
+.ql-snow .ql-formats:after {
   clear: both;
   content: '';
   display: table;
 }
-.quill .ql-snow .ql-stroke {
+.ql-snow .ql-stroke {
   fill: none;
   stroke: #444;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2;
 }
-.quill .ql-snow .ql-stroke-miter {
+.ql-snow .ql-stroke-miter {
   fill: none;
   stroke: #444;
   stroke-miterlimit: 10;
   stroke-width: 2;
 }
-.quill .ql-snow .ql-fill,
-.quill .ql-snow .ql-stroke.ql-fill {
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill {
   fill: #444;
 }
-.quill .ql-snow .ql-empty {
+.ql-snow .ql-empty {
   fill: none;
 }
-.quill .ql-snow .ql-even {
+.ql-snow .ql-even {
   fill-rule: evenodd;
 }
-.quill .ql-snow .ql-thin,
-.quill .ql-snow .ql-stroke.ql-thin {
+.ql-snow .ql-thin,
+.ql-snow .ql-stroke.ql-thin {
   stroke-width: 1;
 }
-.quill .ql-snow .ql-transparent {
+.ql-snow .ql-transparent {
   opacity: 0.4;
 }
-.quill .ql-snow .ql-direction svg:last-child {
+.ql-snow .ql-direction svg:last-child {
   display: none;
 }
-.quill .ql-snow .ql-direction.ql-active svg:last-child {
+.ql-snow .ql-direction.ql-active svg:last-child {
   display: inline;
 }
-.quill .ql-snow .ql-direction.ql-active svg:first-child {
+.ql-snow .ql-direction.ql-active svg:first-child {
   display: none;
 }
-.quill .ql-snow .ql-picker {
+.ql-snow .ql-picker {
   color: #444;
   display: inline-block;
   float: left;
@@ -624,7 +725,7 @@ button:disabled {
   position: relative;
   vertical-align: middle;
 }
-.quill .ql-snow .ql-picker-label {
+.ql-snow .ql-picker-label {
   cursor: pointer;
   display: inline-block;
   height: 100%;
@@ -633,11 +734,11 @@ button:disabled {
   position: relative;
   width: 100%;
 }
-.quill .ql-snow .ql-picker-label::before {
+.ql-snow .ql-picker-label::before {
   display: inline-block;
   line-height: 22px;
 }
-.quill .ql-snow .ql-picker-options {
+.ql-snow .ql-picker-options {
   background-color: #fff;
   display: none;
   min-width: 100%;
@@ -645,53 +746,53 @@ button:disabled {
   position: absolute;
   white-space: nowrap;
 }
-.quill .ql-snow .ql-picker-options .ql-picker-item {
+.ql-snow .ql-picker-options .ql-picker-item {
   cursor: pointer;
   display: block;
   padding-bottom: 5px;
   padding-top: 5px;
 }
-.quill .ql-snow .ql-picker.ql-expanded .ql-picker-label {
+.ql-snow .ql-picker.ql-expanded .ql-picker-label {
   color: #ccc;
   z-index: 2;
 }
-.quill .ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill {
+.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill {
   fill: #ccc;
 }
-.quill .ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke {
+.ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke {
   stroke: #ccc;
 }
-.quill .ql-snow .ql-picker.ql-expanded .ql-picker-options {
+.ql-snow .ql-picker.ql-expanded .ql-picker-options {
   display: block;
   margin-top: -1px;
   top: 100%;
   z-index: 1;
 }
-.quill .ql-snow .ql-color-picker,
-.quill .ql-snow .ql-icon-picker {
+.ql-snow .ql-color-picker,
+.ql-snow .ql-icon-picker {
   width: 28px;
 }
-.quill .ql-snow .ql-color-picker .ql-picker-label,
-.quill .ql-snow .ql-icon-picker .ql-picker-label {
+.ql-snow .ql-color-picker .ql-picker-label,
+.ql-snow .ql-icon-picker .ql-picker-label {
   padding: 2px 4px;
 }
-.quill .ql-snow .ql-color-picker .ql-picker-label svg,
-.quill .ql-snow .ql-icon-picker .ql-picker-label svg {
+.ql-snow .ql-color-picker .ql-picker-label svg,
+.ql-snow .ql-icon-picker .ql-picker-label svg {
   right: 4px;
 }
-.quill .ql-snow .ql-icon-picker .ql-picker-options {
+.ql-snow .ql-icon-picker .ql-picker-options {
   padding: 4px 0px;
 }
-.quill .ql-snow .ql-icon-picker .ql-picker-item {
+.ql-snow .ql-icon-picker .ql-picker-item {
   height: 24px;
   width: 24px;
   padding: 2px 4px;
 }
-.quill .ql-snow .ql-color-picker .ql-picker-options {
+.ql-snow .ql-color-picker .ql-picker-options {
   padding: 3px 5px;
   width: 152px;
 }
-.quill .ql-snow .ql-color-picker .ql-picker-item {
+.ql-snow .ql-color-picker .ql-picker-item {
   border: 1px solid transparent;
   float: left;
   height: 16px;
@@ -699,126 +800,126 @@ button:disabled {
   padding: 0px;
   width: 16px;
 }
-.quill .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
   position: absolute;
   margin-top: -9px;
   right: 0;
   top: 50%;
   width: 18px;
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label[data-label]:not([data-label=''])::before,
-.quill .ql-snow .ql-picker.ql-font .ql-picker-label[data-label]:not([data-label=''])::before,
-.quill .ql-snow .ql-picker.ql-size .ql-picker-label[data-label]:not([data-label=''])::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-label]:not([data-label=''])::before,
-.quill .ql-snow .ql-picker.ql-font .ql-picker-item[data-label]:not([data-label=''])::before,
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item[data-label]:not([data-label=''])::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-label]:not([data-label=''])::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-label]:not([data-label=''])::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-label]:not([data-label=''])::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-label]:not([data-label=''])::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-label]:not([data-label=''])::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-label]:not([data-label=''])::before {
   content: attr(data-label);
 }
-.quill .ql-snow .ql-picker.ql-header {
+.ql-snow .ql-picker.ql-header {
   width: 98px;
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item::before {
   content: 'Normal';
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="1"]::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="1"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
   content: 'Heading 1';
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
   content: 'Heading 2';
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
   content: 'Heading 3';
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="4"]::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="4"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
   content: 'Heading 4';
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="5"]::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="5"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="5"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="5"]::before {
   content: 'Heading 5';
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="6"]::before,
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="6"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-label[data-value="6"]::before,
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="6"]::before {
   content: 'Heading 6';
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
   font-size: 2em;
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
   font-size: 1.5em;
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
   font-size: 1.17em;
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
   font-size: 1em;
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="5"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="5"]::before {
   font-size: 0.83em;
 }
-.quill .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="6"]::before {
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value="6"]::before {
   font-size: 0.67em;
 }
-.quill .ql-snow .ql-picker.ql-font {
+.ql-snow .ql-picker.ql-font {
   width: 108px;
 }
-.quill .ql-snow .ql-picker.ql-font .ql-picker-label::before,
-.quill .ql-snow .ql-picker.ql-font .ql-picker-item::before {
+.ql-snow .ql-picker.ql-font .ql-picker-label::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item::before {
   content: 'Sans Serif';
 }
-.quill .ql-snow .ql-picker.ql-font .ql-picker-label[data-value=serif]::before,
-.quill .ql-snow .ql-picker.ql-font .ql-picker-item[data-value=serif]::before {
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=serif]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=serif]::before {
   content: 'Serif';
 }
-.quill .ql-snow .ql-picker.ql-font .ql-picker-label[data-value=monospace]::before,
-.quill .ql-snow .ql-picker.ql-font .ql-picker-item[data-value=monospace]::before {
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=monospace]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=monospace]::before {
   content: 'Monospace';
 }
-.quill .ql-snow .ql-picker.ql-font .ql-picker-item[data-value=serif]::before {
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=serif]::before {
   font-family: Georgia, Times New Roman, serif;
 }
-.quill .ql-snow .ql-picker.ql-font .ql-picker-item[data-value=monospace]::before {
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=monospace]::before {
   font-family: Monaco, Courier New, monospace;
 }
-.quill .ql-snow .ql-picker.ql-size {
+.ql-snow .ql-picker.ql-size {
   width: 98px;
 }
-.quill .ql-snow .ql-picker.ql-size .ql-picker-label::before,
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item::before {
+.ql-snow .ql-picker.ql-size .ql-picker-label::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item::before {
   content: 'Normal';
 }
-.quill .ql-snow .ql-picker.ql-size .ql-picker-label[data-value=small]::before,
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=small]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
   content: 'Small';
 }
-.quill .ql-snow .ql-picker.ql-size .ql-picker-label[data-value=large]::before,
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before {
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=large]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before {
   content: 'Large';
 }
-.quill .ql-snow .ql-picker.ql-size .ql-picker-label[data-value=huge]::before,
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value=huge]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
   content: 'Huge';
 }
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
   font-size: 10px;
 }
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before {
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before {
   font-size: 18px;
 }
-.quill .ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
   font-size: 32px;
 }
-.quill .ql-snow .ql-color-picker.ql-background .ql-picker-item {
+.ql-snow .ql-color-picker.ql-background .ql-picker-item {
   background-color: #fff;
 }
-.quill .ql-snow .ql-color-picker.ql-color .ql-picker-item {
+.ql-snow .ql-color-picker.ql-color .ql-picker-item {
   background-color: #000;
 }
-.quill .ql-toolbar.ql-snow {
+.ql-toolbar.ql-snow {
   border: 1px solid #ccc;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -826,31 +927,31 @@ button:disabled {
   padding: 8px;
   display: flex;
 }
-.quill .ql-toolbar.ql-snow .ql-formats {
+.ql-toolbar.ql-snow .ql-formats {
   margin-right: 15px;
 }
-.quill .ql-toolbar.ql-snow .ql-picker-label {
+.ql-toolbar.ql-snow .ql-picker-label {
   border: 1px solid transparent;
 }
-.quill .ql-toolbar.ql-snow .ql-picker-options {
+.ql-toolbar.ql-snow .ql-picker-options {
   border: 1px solid transparent;
   -webkit-box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
   box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
 }
-.quill .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
   border-color: #ccc;
 }
-.quill .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
   border-color: #ccc;
 }
-.quill .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item.ql-selected,
-.quill .ql-toolbar.ql-snow .ql-color-picker .ql-picker-item:hover {
+.ql-toolbar.ql-snow .ql-color-picker .ql-picker-item.ql-selected,
+.ql-toolbar.ql-snow .ql-color-picker .ql-picker-item:hover {
   border-color: #000;
 }
-.quill .ql-toolbar.ql-snow + .ql-container.ql-snow {
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
   border-top: 0px;
 }
-.quill .ql-snow .ql-tooltip {
+.ql-snow .ql-tooltip {
   background-color: #fff;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0px 0px 5px #ddd;
@@ -859,12 +960,12 @@ button:disabled {
   padding: 5px 12px;
   white-space: nowrap;
 }
-.quill .ql-snow .ql-tooltip::before {
+.ql-snow .ql-tooltip::before {
   content: "Visit URL:";
   line-height: 26px;
   margin-right: 8px;
 }
-.quill .ql-snow .ql-tooltip input[type=text] {
+.ql-snow .ql-tooltip input[type=text] {
   display: none;
   border: 1px solid #ccc;
   font-size: 13px;
@@ -873,55 +974,71 @@ button:disabled {
   padding: 3px 5px;
   width: 170px;
 }
-.quill .ql-snow .ql-tooltip a.ql-preview {
+.ql-snow .ql-tooltip a.ql-preview {
   display: inline-block;
   max-width: 200px;
   overflow-x: hidden;
   text-overflow: ellipsis;
   vertical-align: top;
 }
-.quill .ql-snow .ql-tooltip a.ql-action::after {
+.ql-snow .ql-tooltip a.ql-action::after {
   border-right: 1px solid #ccc;
   content: 'Edit';
   margin-left: 16px;
   padding-right: 8px;
 }
-.quill .ql-snow .ql-tooltip a.ql-remove::before {
+.ql-snow .ql-tooltip a.ql-remove::before {
   content: 'Remove';
   margin-left: 8px;
 }
-.quill .ql-snow .ql-tooltip a {
+.ql-snow .ql-tooltip a {
   line-height: 26px;
 }
-.quill .ql-snow .ql-tooltip.ql-editing a.ql-preview,
-.quill .ql-snow .ql-tooltip.ql-editing a.ql-remove {
+.ql-snow .ql-tooltip.ql-editing a.ql-preview,
+.ql-snow .ql-tooltip.ql-editing a.ql-remove {
   display: none;
 }
-.quill .ql-snow .ql-tooltip.ql-editing input[type=text] {
+.ql-snow .ql-tooltip.ql-editing input[type=text] {
   display: inline-block;
 }
-.quill .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
+.ql-snow .ql-tooltip.ql-editing a.ql-action::after {
   border-right: 0px;
   content: 'Save';
   padding-right: 0px;
 }
-.quill .ql-snow .ql-tooltip[data-mode=link]::before {
+.ql-snow .ql-tooltip[data-mode=link]::before {
   content: "Enter link:";
 }
-.quill .ql-snow .ql-tooltip[data-mode=formula]::before {
+.ql-snow .ql-tooltip[data-mode=formula]::before {
   content: "Enter formula:";
 }
-.quill .ql-snow .ql-tooltip[data-mode=video]::before {
+.ql-snow .ql-tooltip[data-mode=video]::before {
   content: "Enter video:";
 }
-.quill .ql-snow a {
+.ql-snow a {
   color: #06c;
 }
-.quill .ql-container.ql-snow {
+.ql-container.ql-snow {
   border: 1px solid #ccc;
 }
 nav {
   height: 80px;
+}
+nav ::-webkit-input-placeholder {
+/* Chrome/Opera/Safari */
+  color: rgba(37,35,35,0.33);
+}
+nav ::-moz-placeholder {
+/* Firefox 19+ */
+  color: rgba(37,35,35,0.33);
+}
+nav :-ms-input-placeholder {
+/* IE 10+ */
+  color: rgba(37,35,35,0.33);
+}
+nav :-moz-placeholder {
+/* Firefox 18- */
+  color: rgba(37,35,35,0.33);
 }
 .navbar {
   width: 100%;
@@ -948,9 +1065,8 @@ nav {
 }
 .header-menu {
   float: left;
-  width: 30%;
+  width: 40%;
   min-width: 265px;
-  margin: 0 0 0 35px;
 }
 .header-menu ul {
   float: left;
@@ -989,7 +1105,7 @@ nav {
   float: right;
   width: 25%;
   min-width: 150px;
-  margin: 31px 0 0 0;
+  margin: 29px 0 0 0;
 }
 .search li:nth-child(1) {
   float: left;
@@ -1126,4 +1242,426 @@ nav {
   display: block;
   padding-top: 25px;
   padding-bottom: 25px;
+}
+.post-tag-container {
+  width: 95%;
+  max-width: 950px;
+  margin: 0 auto;
+  display: table;
+}
+.post-tag-container ul {
+  display: table;
+  margin: 25px 0;
+}
+.post-tag-container ul li {
+  float: left;
+  padding: 1px 10px;
+  border: 1px solid #e7e7e7;
+  margin-right: 10px;
+  color: rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+.post-tag-container ul li:hover {
+  background-color: #f8f8f8;
+  color: rgba(0,0,0,0.8);
+}
+.not-found {
+  width: 95%;
+  max-width: 950px;
+  margin: 0 auto;
+  min-height: 65vh;
+}
+body {
+  color: #7f8897;
+  font-family: 'merriweather-sans-light';
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.5em;
+/*background: #f7f7f7;*/
+  text-align: center;
+}
+.wrap {
+  margin: 50px auto 0;
+  width: 120px;
+  height: 100px;
+  position: relative;
+}
+h2 {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 3em;
+}
+div.items {
+  font-size: 50px;
+}
+div.items .fa {
+  position: absolute;
+  top: calc(50% - 0.4em);
+  left: calc(50% - 0.4em);
+  opacity: 0;
+}
+div.items .fa:nth-child(1) {
+  animation: slidefade 20s 0s infinite linear;
+}
+div.items .fa:nth-child(2) {
+  animation: slidefade 20s 2s infinite linear;
+}
+div.items .fa:nth-child(3) {
+  animation: slidefade 20s 4s infinite linear;
+}
+div.items .fa:nth-child(4) {
+  animation: slidefade 20s 6s infinite linear;
+}
+div.items .fa:nth-child(5) {
+  animation: slidefade 20s 8s infinite linear;
+}
+div.items .fa:nth-child(6) {
+  animation: slidefade 20s 10s infinite linear;
+}
+div.items .fa:nth-child(7) {
+  animation: slidefade 20s 12s infinite linear;
+}
+div.items .fa:nth-child(8) {
+  animation: slidefade 20s 14s infinite linear;
+}
+div.items .fa:nth-child(9) {
+  animation: slidefade 20s 16s infinite linear;
+}
+div.items .fa:nth-child(10) {
+  animation: slidefade 20s 18s infinite linear;
+}
+i.fa-search {
+  color: #a9afb9;
+  position: absolute;
+  z-index: 2;
+}
+i.search-1 {
+  font-size: 20px;
+  top: 5px;
+  left: 0;
+  top: -10px;
+  left: -15px;
+  animation: rotcw 5s infinite linear;
+}
+i.search-2 {
+  font-size: 12px;
+  top: 10px;
+  right: 15px;
+  top: -5px;
+  right: 0;
+  animation: rotcw 4s infinite linear;
+}
+i.search-3 {
+  font-size: 12px;
+  bottom: 0;
+  left: 5px;
+  bottom: -15px;
+  left: -10px;
+  animation: rotccw 4.4s infinite linear;
+}
+i.search-4 {
+  font-size: 20px;
+  bottom: -5px;
+  right: 0;
+  bottom: -20px;
+  right: -15px;
+  animation: rotccw 5.5s infinite linear;
+}
+@-moz-keyframes slidefade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+  4.5% {
+    opacity: 1;
+    -webkit-transform: translate(10px, 0);
+    -moz-transform: translate(10px, 0);
+    -ms-transform: translate(10px, 0);
+    -o-transform: translate(10px, 0);
+    transform: translate(10px, 0);
+  }
+  10.5% {
+    opacity: 1;
+    -webkit-transform: translate(-10px, 0);
+    -moz-transform: translate(-10px, 0);
+    -ms-transform: translate(-10px, 0);
+    -o-transform: translate(-10px, 0);
+    transform: translate(-10px, 0);
+  }
+  15% {
+    opacity: 0;
+    -webkit-transform: translate(-50px, 0);
+    -moz-transform: translate(-50px, 0);
+    -ms-transform: translate(-50px, 0);
+    -o-transform: translate(-50px, 0);
+    transform: translate(-50px, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+}
+@-webkit-keyframes slidefade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+  4.5% {
+    opacity: 1;
+    -webkit-transform: translate(10px, 0);
+    -moz-transform: translate(10px, 0);
+    -ms-transform: translate(10px, 0);
+    -o-transform: translate(10px, 0);
+    transform: translate(10px, 0);
+  }
+  10.5% {
+    opacity: 1;
+    -webkit-transform: translate(-10px, 0);
+    -moz-transform: translate(-10px, 0);
+    -ms-transform: translate(-10px, 0);
+    -o-transform: translate(-10px, 0);
+    transform: translate(-10px, 0);
+  }
+  15% {
+    opacity: 0;
+    -webkit-transform: translate(-50px, 0);
+    -moz-transform: translate(-50px, 0);
+    -ms-transform: translate(-50px, 0);
+    -o-transform: translate(-50px, 0);
+    transform: translate(-50px, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+}
+@-o-keyframes slidefade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+  4.5% {
+    opacity: 1;
+    -webkit-transform: translate(10px, 0);
+    -moz-transform: translate(10px, 0);
+    -ms-transform: translate(10px, 0);
+    -o-transform: translate(10px, 0);
+    transform: translate(10px, 0);
+  }
+  10.5% {
+    opacity: 1;
+    -webkit-transform: translate(-10px, 0);
+    -moz-transform: translate(-10px, 0);
+    -ms-transform: translate(-10px, 0);
+    -o-transform: translate(-10px, 0);
+    transform: translate(-10px, 0);
+  }
+  15% {
+    opacity: 0;
+    -webkit-transform: translate(-50px, 0);
+    -moz-transform: translate(-50px, 0);
+    -ms-transform: translate(-50px, 0);
+    -o-transform: translate(-50px, 0);
+    transform: translate(-50px, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+}
+@keyframes slidefade {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+  4.5% {
+    opacity: 1;
+    -webkit-transform: translate(10px, 0);
+    -moz-transform: translate(10px, 0);
+    -ms-transform: translate(10px, 0);
+    -o-transform: translate(10px, 0);
+    transform: translate(10px, 0);
+  }
+  10.5% {
+    opacity: 1;
+    -webkit-transform: translate(-10px, 0);
+    -moz-transform: translate(-10px, 0);
+    -ms-transform: translate(-10px, 0);
+    -o-transform: translate(-10px, 0);
+    transform: translate(-10px, 0);
+  }
+  15% {
+    opacity: 0;
+    -webkit-transform: translate(-50px, 0);
+    -moz-transform: translate(-50px, 0);
+    -ms-transform: translate(-50px, 0);
+    -o-transform: translate(-50px, 0);
+    transform: translate(-50px, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -ms-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
+    transform: translate(50px, 0);
+  }
+}
+@-moz-keyframes rotcw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -moz-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -ms-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -o-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    transform: rotate(360deg) translate(5px) rotate(-360deg);
+  }
+}
+@-webkit-keyframes rotcw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -moz-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -ms-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -o-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    transform: rotate(360deg) translate(5px) rotate(-360deg);
+  }
+}
+@-o-keyframes rotcw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -moz-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -ms-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -o-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    transform: rotate(360deg) translate(5px) rotate(-360deg);
+  }
+}
+@keyframes rotcw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -moz-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -ms-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    -o-transform: rotate(360deg) translate(5px) rotate(-360deg);
+    transform: rotate(360deg) translate(5px) rotate(-360deg);
+  }
+}
+@-moz-keyframes rotccw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -moz-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -ms-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -o-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    transform: rotate(-360deg) translate(5px) rotate(360deg);
+  }
+}
+@-webkit-keyframes rotccw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -moz-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -ms-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -o-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    transform: rotate(-360deg) translate(5px) rotate(360deg);
+  }
+}
+@-o-keyframes rotccw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -moz-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -ms-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -o-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    transform: rotate(-360deg) translate(5px) rotate(360deg);
+  }
+}
+@keyframes rotccw {
+  from {
+    -webkit-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -moz-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -ms-transform: rotate(0deg) translate(5px) rotate(0deg);
+    -o-transform: rotate(0deg) translate(5px) rotate(0deg);
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -moz-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -ms-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    -o-transform: rotate(-360deg) translate(5px) rotate(360deg);
+    transform: rotate(-360deg) translate(5px) rotate(360deg);
+  }
 }

@@ -1,16 +1,15 @@
 import React, { Component } from "react"
 import $ from "jquery"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import ReactQuill from "react-quill"
 import QuillDeltaToHtmlConverter from "quill-delta-to-html"
-// import logo from './logo.svg';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			post: [],
+			post: { tags: [] },
 			redirect: false,
 			html: {}
 		}
@@ -30,7 +29,6 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				console.log(json.data)
 				if (json.success) {
 					console.log(json.data.context)
 					this.setState({
@@ -79,11 +77,10 @@ class App extends Component {
 		)
 	}
 	getCategory = post => {
-		if (post.section != null) {
-			// return post.section[0].name
-			return post.section[0]
+		if (post.category != null && post.category.length > 0) {
+			return post.category[0].name
 		} else {
-			return "null"
+			return ""
 		}
 	}
 
@@ -99,6 +96,14 @@ class App extends Component {
 	}
 
 	render() {
+		const tags = this.state.post.tags.map((tag, index) => {
+			return (
+				<li key={tag._id}>
+					{tag.name}
+				</li>
+			)
+		})
+
 		return (
 			<div className="detailed-post">
 				<div className="post-header">
@@ -109,7 +114,9 @@ class App extends Component {
 							&nbsp; &nbsp; &nbsp;
 						</li>
 						<li className="post-title">
-							{this.state.post.heading}
+							<a>
+								{this.state.post.heading}
+							</a>
 						</li>
 						<li className="post-category">
 							{this.getCategory(this.state.post)}
@@ -118,6 +125,12 @@ class App extends Component {
 				</div>
 				<div className="post-container">
 					<div dangerouslySetInnerHTML={this.getHtml()} />
+				</div>
+
+				<div className="post-tag-container">
+					<ul>
+						{tags}
+					</ul>
 				</div>
 			</div>
 		)

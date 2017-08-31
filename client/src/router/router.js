@@ -1,6 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Home from "../components/homeComponent/homeComponent.js"
+import Search from "../components/searchComponent/searchComponent.js"
 import Login from "../components/loginComponent/loginComponent.js"
 import Dashboard from "../components/dashboardComponent/dashboardComponent.js"
 import Header from "../components/headerComponent/headerComponent.js"
@@ -25,6 +26,7 @@ const router = (
 				onEnter={isAuthenticated}
 			/>
 			<Route path="/post/:slug" component={DetailedPost} />
+			<Route path="/search/:slug" component={Search} />
 			<Footer />
 		</div>
 	</Router>

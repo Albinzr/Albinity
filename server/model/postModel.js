@@ -5,6 +5,8 @@ const { Schema } = mongoose
 mongoose.Promise = global.Promise
 
 import User from "./userModel"
+import Category from "./categoryModel"
+import Tag from "./tagModel"
 
 const postModel = new Schema({
 	heading: {
@@ -37,23 +39,22 @@ const postModel = new Schema({
 		default: Date.now
 	},
 
-	section: {
-		type: Array,
-		required: [true, "Enter section for post"],
-		name: {
-			type: String,
-			required: [true, "Enter section for post"]
+	category: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Category",
+			required: [true, "no tags"]
 		}
-	},
+	],
 
-	tags: {
-		type: Array,
-		required: [true, "Enter section for post"],
-		name: {
-			type: String,
-			required: [true, "Enter section for post"]
+	tags: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Tag",
+			required: [true, "no tags selected"]
 		}
-	},
+	],
+
 	author: {
 		type: Schema.Types.ObjectId,
 		ref: "User",

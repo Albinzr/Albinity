@@ -46,10 +46,18 @@ module.exports = function(app) {
 		uploadController.uploadBlogImages
 	)
 
-	app.post("/api/newpost", postController.createPost)
+	app.post("/api/post", postController.createPost)
 	app.get("/api/post/:slug", postController.detailedPost)
 	app.get("/api/post", postController.display)
 	app.post("/api/post/update", postController.update)
+
+	//NOTE - Tag
+	app.post("/api/tag", postController.createTag)
+	app.get("/api/tag", postController.getTags)
+
+	//NOTE - Category
+	app.post("/api/category", postController.createCategory)
+	app.get("/api/category", postController.getCategory)
 
 	//NOTE - Search -
 	app.get("/api/search/", searchController.fuzzySearch)

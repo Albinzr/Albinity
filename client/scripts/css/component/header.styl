@@ -1,5 +1,17 @@
 nav
     height 80px
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: rgba(37, 35, 35, 0.33);
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: rgba(37, 35, 35, 0.33);
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: rgba(37, 35, 35, 0.33);
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: rgba(37, 35, 35, 0.33);
+    }
 .navbar
     width: 100%
     position: fixed
@@ -26,9 +38,9 @@ nav
 
 .header-menu
     float: left;
-    width 30%
+    width 40%
     min-width: 265px
-    margin 0 0 0 35px
+    // margin 0 0 0 35px
     ul
         float: left;
         margin 0
@@ -62,7 +74,7 @@ nav
     float: right;
     width: 25%
     min-width: 150px
-    margin 31px 0 0 0
+    margin 29px 0 0 0
     li:nth-child(1)
         float: left;
         display: block;

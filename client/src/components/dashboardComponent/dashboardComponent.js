@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import ReactQuill from "react-quill"
-var NotificationSystem = require("react-notification-system")
+import ReactDOM from "react-dom"
 import $ from "jquery"
 
 class App extends Component {
@@ -11,15 +11,16 @@ class App extends Component {
 			subHeading: "",
 			editorHtml: "",
 			theme: "snow",
-			delta: ""
+			delta: "",
+			userInput: ""
 		}
 
-		this.handleChange = this.handleChange.bind(this)
 		this.handleHeading = this.handleHeading.bind(this)
 		this.handSubHeading = this.handSubHeading.bind(this)
 		this.imageHandler = this.imageHandler.bind(this)
 		this.getFirstImageFromHtml = this.getFirstImageFromHtml.bind(this)
 		this.save = this.save.bind(this)
+		this.handleChange = this.handleChange.bind(this)
 		this.modules = {}
 
 		this.modules = {
@@ -52,7 +53,9 @@ class App extends Component {
 			}
 		}
 	}
-	alert() {}
+	alert() {
+		console.log("yo")
+	}
 
 	imageHandler = (image, callback) => {
 		var range = this.quillRef.getEditor().getSelection()
@@ -112,6 +115,9 @@ class App extends Component {
 		})
 	}
 
+	createTagArray(tagsString) {
+		return JSON.stringify(tagsString.split(","))
+	}
 	save() {
 		event.preventDefault()
 		const heading = this.state.heading
@@ -120,13 +126,13 @@ class App extends Component {
 		const username = this.state.username
 		const password = this.state.password
 		const mainImage = this.getFirstImageFromHtml(this.state.delta)
-		console.log(mainImage)
+		console.log(this.createTagArray(this.refs.tags.value), "check tags")
 		$.ajax({
 			type: "POST",
 			xhrFields: {
 				withCredentials: true
 			},
-			url: "http://localhost:4000/api/newpost",
+			url: "http://localhost:4000/api/post",
 			// contentType: "application/json; charset=utf-8",
 			// dataType: "json",
 			data: {
@@ -134,7 +140,7 @@ class App extends Component {
 				subHeading: subHeading,
 				context: context,
 				section: "sadsa",
-				tags: "sdasd",
+				tags: this.createTagArray(this.refs.tags.value),
 				mainImage: mainImage,
 				active: true
 			}
@@ -177,10 +183,23 @@ class App extends Component {
 					placeholder={this.props.placeholder}
 					required
 				/>
-				<button className="dashboard-save" onClick={this.alert}>
+				<div className="dashboard-tag-container">
+					<form action="" className="test" method="post">
+						<input
+							type="text"
+							id="exist-values"
+							className="tagged form-control"
+							data-removeBtn="true"
+							name="tag-2"
+							placeholder="Add tags"
+							ref="tags"
+						/>
+					</form>
+				</div>
+
+				<button className="dashboard-save" onClick={this.save}>
 					Save
 				</button>
-				<NotificationSystem ref="notificationSystem" />
 			</div>
 		)
 	}
