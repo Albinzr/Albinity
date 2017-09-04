@@ -1,15 +1,16 @@
 import React, { Component } from "react"
+import $ from "jquery"
 
 class App extends Component {
 	constructor(props) {
 		super(props)
-		// this.state = {
-		//   affiliation: []
-		// };
+		this.state = {
+			categories: []
+		}
 	}
 
 	componentDidMount() {
-		// this.getAffiliation();
+		this.getCategories()
 	}
 
 	search(event) {
@@ -18,30 +19,49 @@ class App extends Component {
 			return (window.location = baseUrl + "/search/" + event.target.value)
 		}
 	}
+	showCategoryMenu(event) {
+		var element = document.body.getElementsByClassName("category-menu")
+		if (element[0] != null) {
+			element[0].style.display = "block"
+		}
+	}
+	hideCategoryMenu(event) {
+		console.log("kkkkkk")
+		var element = document.body.getElementsByClassName("category-menu")
+		if (element[0] != null) {
+			element[0].style.display = "none"
+		}
+	}
+	getCategories() {
+		let url = "http://localhost:4000/api/category"
 
-	// getAffiliation() {
-	//   let url = "http://localhost:4000/api/display";
-	//
-	//   $.ajax({
-	//     url: url,
-	//     type: "GET",
-	//     xhrFields: {
-	//       withCredentials: true
-	//     },
-	//     success: function(json) {
-	//       if (json.success) {
-	//         this.setState({
-	//           affiliation: json.data
-	//         });
-	//       }
-	//     }.bind(this),
-	//     error: function(error) {
-	//       console.log("no network");
-	//     }
-	//   });
-	// }
+		$.ajax({
+			url: url,
+			type: "GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function(json) {
+				if (json.success) {
+					this.setState({
+						categories: json.data
+					})
+				}
+			}.bind(this),
+			error: function(error) {
+				console.log("no network")
+			}
+		})
+	}
 
 	render() {
+		let categories = this.state.categories.map((category, index) => {
+			return (
+				<li key={index}>
+					{category.name}
+				</li>
+			)
+		})
 		return (
 			<nav>
 				<div className="navbar">
@@ -52,24 +72,40 @@ class App extends Component {
 
 						<div className="header-menu">
 							<ul>
-								<li>Category</li>
-								<li>About</li>
-								<li>Contact</li>
+								<li
+									onMouseOver={this.showCategoryMenu}
+									onMouseLeave={this.hideCategoryMenu}
+								>
+									<span onClick={this.showCategoryMenu}>
+										Category
+									</span>
+									<div className="category-menu">
+										<ul style={{ display: "block" }}>
+											{categories}
+										</ul>
+									</div>
+								</li>
+								<li>
+									<span>About</span>
+								</li>
+								<li>
+									<span>Contact</span>
+								</li>
 							</ul>
 						</div>
 
 						<div className="social">
 							<ul>
-								<li>F</li>
-								<li>I</li>
-								<li>T</li>
-								<li>Y</li>
+								<li className="fa fa-facebook" />
+								<li className="fa fa-twitter" />
+								<li className="fa fa-instagram" />
+								<li className="fa fa-youtube" />
 							</ul>
 						</div>
 
 						<div className="search">
 							<ul>
-								<li>S</li>
+								<li className="fa fa-search" />
 								<li>
 									<input
 										type="text"

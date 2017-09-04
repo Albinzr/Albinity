@@ -3,6 +3,8 @@ import ReactQuill from "react-quill"
 import ReactDOM from "react-dom"
 import $ from "jquery"
 
+import ReactToastr, { ToastContainer } from "react-toastr"
+
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -12,7 +14,9 @@ class App extends Component {
 			editorHtml: "",
 			theme: "snow",
 			delta: "",
-			userInput: ""
+			userInput: "",
+			categories: [],
+			selectedCategories: []
 		}
 
 		this.handleHeading = this.handleHeading.bind(this)
@@ -22,6 +26,7 @@ class App extends Component {
 		this.save = this.save.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 		this.modules = {}
+		this.categoryCheck = this.categoryCheck.bind(this)
 
 		this.modules = {
 			toolbar: {
@@ -40,6 +45,48 @@ class App extends Component {
 		}
 	}
 
+	categoryCheck(event) {
+		var currentSelectedCategories = this.state.selectedCategories
+		if (event.target.checked) {
+			currentSelectedCategories.push(event.target.value)
+			this.setState({
+				selectedCategories: currentSelectedCategories
+			})
+		} else {
+			let selected = currentSelectedCategories.filter(function(item) {
+				return item !== event.target.value
+			})
+			this.setState({
+				selectedCategories: selected
+			})
+		}
+	}
+
+	componentWillMount() {
+		this.getCategories()
+	}
+
+	getCategories() {
+		let url = "http://localhost:4000/api/category"
+		$.ajax({
+			url: url,
+			type: "GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function(json) {
+				if (json.success) {
+					this.setState({
+						categories: json.data
+					})
+				}
+			}.bind(this),
+			error: function(error) {
+				console.log("no network")
+			}
+		})
+	}
+
 	setElementAttributesHelper(el, attrs) {
 		for (var key in attrs) {
 			el.setAttribute(key, attrs[key])
@@ -47,14 +94,14 @@ class App extends Component {
 	}
 
 	getFirstImageFromHtml(delta) {
+		if (delta == null || delta == undefined || delta == "") {
+			return
+		}
 		for (let value of delta.ops) {
 			if (value.insert.image != undefined || value.insert.image != null) {
 				return value.insert.image
 			}
 		}
-	}
-	alert() {
-		console.log("yo")
 	}
 
 	imageHandler = (image, callback) => {
@@ -115,52 +162,157 @@ class App extends Component {
 		})
 	}
 
-	createTagArray(tagsString) {
+	createTagArray(tagsString, errorMessage) {
+		if (
+			tagsString == null ||
+			tagsString == undefined ||
+			tagsString == "" ||
+			tagsString.count == 0
+		) {
+			this.alert(errorMessage)
+			return false
+		}
 		return JSON.stringify(tagsString.split(","))
 	}
-	save() {
-		event.preventDefault()
-		const heading = this.state.heading
-		const subHeading = this.state.subHeading
-		const context = JSON.stringify(this.state.delta)
-		const username = this.state.username
-		const password = this.state.password
-		const mainImage = this.getFirstImageFromHtml(this.state.delta)
-		console.log(this.createTagArray(this.refs.tags.value), "check tags")
+	createCategory(categoryString, errorMessage) {
+		if (
+			categoryString == null ||
+			categoryString == undefined ||
+			categoryString == "" ||
+			categoryString.count == 0
+		) {
+			this.alert(errorMessage)
+			return false
+		}
+		return JSON.stringify(categoryString)
+	}
+
+	alert(description) {
+		this.container.error(
+			<strong />,
+			<p>
+				{description}
+			</p>,
+			{
+				timeOut: 5000,
+				showAnimation: "animated fadeIn", //or other animations from animate.css
+				hideAnimation: "animated fadeOut",
+				closeButton: true
+			}
+		)
+	}
+	validationCheckForString(data, errorMessage) {
+		if (data == null || data == undefined || data == "") {
+			this.alert(errorMessage)
+			return false
+		} else {
+			return data
+		}
+	}
+
+	sendPost(heading, subHeading, context, mainImage, tags, category) {
 		$.ajax({
 			type: "POST",
 			xhrFields: {
 				withCredentials: true
 			},
 			url: "http://localhost:4000/api/post",
-			// contentType: "application/json; charset=utf-8",
-			// dataType: "json",
 			data: {
 				heading: heading,
 				subHeading: subHeading,
 				context: context,
 				section: "sadsa",
-				tags: this.createTagArray(this.refs.tags.value),
+				tags: tags,
+				category: category,
 				mainImage: mainImage,
 				active: true
 			}
 		})
 			.done(
 				function(data, status, xhr) {
-					console.log(data)
 					if (data.success) {
 						console.log("uploaded")
 					}
 				}.bind(this)
 			)
 			.fail(function(xhr, status, err) {
-				console.log(err)
+				console.log(xhr, status, err)
+				this.alert(err.message)
 			})
 	}
 
+	save() {
+		event.preventDefault()
+		const heading = this.validationCheckForString(
+			this.state.heading,
+			"Enter a valid heading"
+		)
+		const subHeading = this.validationCheckForString(
+			this.state.subHeading,
+			"Enter a valid summary"
+		)
+		const context = this.validationCheckForString(
+			JSON.stringify(this.state.delta),
+			"Enter proper content for your post"
+		)
+
+		const mainImage = this.validationCheckForString(
+			this.getFirstImageFromHtml(this.state.delta),
+			"Upload atleast one image"
+		)
+
+		const tags = this.createTagArray(
+			this.refs.tags.value,
+			"Enter some tags"
+		)
+
+		const category = this.createCategory(
+			this.state.selectedCategories,
+			"Select atleast one catrgory"
+		)
+		if (
+			heading &&
+			subHeading &&
+			context &&
+			mainImage &&
+			tags &&
+			category !== false
+		) {
+			this.sendPost(
+				heading,
+				subHeading,
+				context,
+				mainImage,
+				tags,
+				category
+			)
+		}
+	}
+
 	render() {
+		const categories = this.state.categories.map((category, index) => {
+			return (
+				<li key={category._id}>
+					<input
+						type="checkbox"
+						value={category._id}
+						data-att={category.name}
+						onChange={this.categoryCheck}
+					/>
+					<label>
+						{category.name}
+					</label>
+				</li>
+			)
+		})
 		return (
 			<div className="dashboard-container">
+				<ToastContainer
+					ref={input => {
+						this.container = input
+					}}
+					className="toast-top-right"
+				/>
 				<input
 					type="text"
 					placeholder="Heading"
@@ -195,6 +347,12 @@ class App extends Component {
 							ref="tags"
 						/>
 					</form>
+				</div>
+				<div className="dashboard-category-container">
+					<p>Select Categories</p>
+					<ul>
+						{categories}
+					</ul>
 				</div>
 
 				<button className="dashboard-save" onClick={this.save}>

@@ -60,5 +60,6 @@ module.exports = function(app) {
 	app.get("/api/category", postController.getCategory)
 
 	//NOTE - Search -
-	app.get("/api/search/", searchController.fuzzySearch)
+	app.get("/api/search/:key", searchController.fuzzySearch)
+	app.get("/api/tag/:tag", postController.displayByTag)
 }

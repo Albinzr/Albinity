@@ -1,13 +1,13 @@
 import React, { Component } from "react"
 import $ from "jquery"
-// import cookies  from 'react-cookie';
-// import logo from './logo.svg';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-
+let limit = 4
+let offset = 0
+let loadMore = true
 class App extends Component {
 	constructor(props) {
 		super(props)
-		// this.getCategory = this.getCategory.bind(this)
+		this.loadMore = this.loadMore.bind(this)
 		this.state = {
 			posts: [],
 			redirect: false
@@ -18,9 +18,22 @@ class App extends Component {
 		this.getPosts()
 	}
 
+	loadMore() {
+		if (loadMore) {
+			offset = offset + 4
+			this.getPosts()
+		}
+	}
+
 	getPosts() {
 		let searchKey = this.props.match.params.slug
-		let url = "http://localhost:4000/api/search?key=" + searchKey
+		let url =
+			"http://localhost:4000/api/search/" +
+			searchKey +
+			"?limit=" +
+			limit +
+			"&offset=" +
+			offset
 		$.ajax({
 			url: url,
 			type: "GET",
@@ -28,9 +41,14 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
+				if (json.data.length < 4) {
+					loadMore = false
+				}
 				if (json.success) {
+					let currentPost = this.state.posts
+					let combineAllPost = currentPost.concat(json.data)
 					this.setState({
-						posts: json.data
+						posts: combineAllPost
 					})
 				}
 			}.bind(this),
@@ -73,7 +91,6 @@ class App extends Component {
 	}
 
 	render() {
-		console.log(this.state.posts)
 		if (this.state.posts.length == 0) {
 			return (
 				<div className="not-found">
@@ -142,10 +159,12 @@ class App extends Component {
 						<div className="post-more-details">
 							<div className="post-share">
 								<ul>
-									<li>SHARE |</li>
-									<li>f</li>
-									<li>t</li>
-									<li>w</li>
+									<li>
+										SHARE <span>|</span>
+									</li>
+									<li className="fa fa-facebook" />
+									<li className="fa fa-twitter" />
+									<li className="fa fa-whatsapp" />
 								</ul>
 							</div>
 
@@ -173,6 +192,17 @@ class App extends Component {
 		return (
 			<div>
 				{posts}
+
+				<div className="load-more-continer">
+					<hr />
+					<button
+						className="load-more"
+						onClick={this.loadMore}
+						style={{ display: loadMore ? "block" : "none" }}
+					>
+						Load More
+					</button>
+				</div>
 			</div>
 		)
 	}

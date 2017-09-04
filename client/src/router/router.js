@@ -7,6 +7,7 @@ import Dashboard from "../components/dashboardComponent/dashboardComponent.js"
 import Header from "../components/headerComponent/headerComponent.js"
 import Footer from "../components/footerComponent/footerComponent.js"
 import DetailedPost from "../components/detailedPostComponent/detailedPostComponent.js"
+// console.log(hashHistory)
 const isAuthenticated = () => {
 	return true
 }
@@ -15,18 +16,35 @@ const router = (
 	<Router>
 		<div>
 			<Header />
+			<Route
+				exact={true}
+				path="/"
+				component={props => <Home {...props} pageKey="home" />}
+			/>
 
-			<Route exact={true} path="/" component={Home} />
-			<Route path="/home" component={Home} />
-			<Route path="/login" component={Login} />
-			<Route path="/login" component={Login} />
+			<Route
+				path="/search/:slug"
+				component={props => <Home {...props} pageKey="home" />}
+			/>
+
+			<Route
+				path="/home"
+				component={props => <Home {...props} pageKey="home" />}
+			/>
+			<Route
+				path="/tag/:slug"
+				component={props => <Home {...props} pageKey="tag" />}
+			/>
+
 			<Route
 				path="/dashboard"
 				component={Dashboard}
 				onEnter={isAuthenticated}
 			/>
+			<Route path="/login" component={Login} />
+
 			<Route path="/post/:slug" component={DetailedPost} />
-			<Route path="/search/:slug" component={Search} />
+
 			<Footer />
 		</div>
 	</Router>

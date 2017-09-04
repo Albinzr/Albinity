@@ -15,7 +15,8 @@ postController.createPost = (req, res) => {
 		section,
 		tags,
 		active,
-		mainImage
+		mainImage,
+		category
 	} = req.body
 
 	let post = new Post({
@@ -25,7 +26,6 @@ postController.createPost = (req, res) => {
 		active,
 		mainImage
 	})
-
 	post.author = req.session.userId
 	post.slug = slug(heading) + "_" + Math.random().toString(36).substring(7)
 
@@ -61,8 +61,8 @@ postController.createPost = (req, res) => {
 
 			let tagObject = []
 			if (Object.keys(tagArray).length > 0) {
-				console.log(Object.keys(newTagArray).length)
-				newTagArray.forEach((name, index) => {
+				newTagArray.forEach((tagName, index) => {
+					let name = tagName.toLowerCase()
 					let tag = new Tag({
 						name
 					})
@@ -112,10 +112,15 @@ postController.createPost = (req, res) => {
 			post.tags = tagObjectIds
 		})
 		.then(() => {
-			post.category = [
-				mongoose.Types.ObjectId("59a18b13e52e0c3879633d55"),
-				mongoose.Types.ObjectId("59a18ac5e947b438756516b5")
-			]
+			const selectedCategories = JSON.parse(category)
+			let categoryArray = selectedCategories.filter(function(str) {
+				return /\S/.test(str)
+			})
+
+			return categoryArray
+		})
+		.then(categoryObject => {
+			post.category = categoryObject
 		})
 		.then(() => {
 			post
@@ -152,6 +157,7 @@ postController.display = (req, res) => {
 		{
 			active: true
 		},
+		"author tags category publishedDate mainImage heading subHeading slug",
 		(error, post) => {
 			if (error == null) {
 				res.status(200).json({
@@ -277,8 +283,8 @@ postController.createTag = (req, res) => {
 	const nameArray = JSON.parse(req.body.tags)
 	console.log(typeof nameArray)
 	var bulkTag = []
-	nameArray.forEach((name, index) => {
-		console.log(name)
+	nameArray.forEach((tagName, index) => {
+		let name = tagName.toLowerCase()
 		let tag = new Tag({
 			name
 		})
@@ -319,8 +325,8 @@ postController.getTags = (req, res) => {
 }
 
 postController.createCategory = (req, res) => {
-	const { name } = req.body
-
+	const categoryName = req.body.name
+	let name = categoryName.toLowerCase()
 	let category = new Category({
 		name
 	})
@@ -358,4 +364,55 @@ postController.getCategory = (req, res) => {
 	})
 }
 
+postController.displayByTag = (req, res) => {
+	const name = req.params.tag
+	let offset = parseInt(req.param("offset"))
+	let limit = parseInt(req.param("limit"))
+	console.log("albin")
+	console.log(name, "tag name")
+
+	Tag.findOne(
+		{
+			name: name
+		},
+		(error, tag) => {
+			console.log(tag, "incoming tag details")
+			if (error == null && tag != null) {
+				Post.find(
+					{
+						tags: tag._id
+					},
+					"author tags category publishedDate mainImage heading subHeading slug",
+					(error, post) => {
+						if (error == null) {
+							console.log(post, "incoming post details")
+							res.status(200).json({
+								success: true,
+								data: post
+							})
+						} else {
+							res.status(400).json({
+								success: false,
+								message: "Dose not exist.",
+								error: error
+							})
+						}
+					}
+				)
+					.populate("author")
+					.populate("tags")
+					.populate("category")
+					.skip(offset)
+					.limit(limit)
+			} else {
+				console.log("no success")
+				res.status(400).json({
+					success: false,
+					message: "Dose not exist.",
+					error: error
+				})
+			}
+		}
+	)
+}
 export default postController

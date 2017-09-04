@@ -7,7 +7,8 @@ mongoose.Promise = global.Promise
 const categoryModel = new Schema({
 	name: {
 		type: String,
-		required: [true, "Enter the tag"],
+		unique: true,
+		required: [true, "Enter the category"],
 		minlength: [2, "Tag should be minimum 3 letter long."]
 	}
 })

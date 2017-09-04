@@ -3,6 +3,7 @@ import $ from "jquery"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import ReactQuill from "react-quill"
 import QuillDeltaToHtmlConverter from "quill-delta-to-html"
+import FacebookProvider, { Comments } from "react-facebook"
 
 class App extends Component {
 	constructor(props) {
@@ -30,7 +31,6 @@ class App extends Component {
 			},
 			success: function(json) {
 				if (json.success) {
-					console.log(json.data.context)
 					this.setState({
 						post: json.data,
 						html: JSON.parse(json.data.context).ops
@@ -47,7 +47,6 @@ class App extends Component {
 		var cfg = {}
 		var converter = new QuillDeltaToHtmlConverter(this.state.html, cfg)
 		let html = converter.convert()
-		console.log(html, "html")
 		return { __html: html }
 	}
 
@@ -66,7 +65,6 @@ class App extends Component {
 			"NOV",
 			"DEC"
 		]
-		console.log("count")
 		let formated = new Date(timeStamp)
 		return (
 			formated.getDate() +
@@ -77,18 +75,14 @@ class App extends Component {
 		)
 	}
 	getCategory = post => {
-		if (post.category != null && post.category.length > 0) {
+		if (post.category != null) {
 			return post.category[0].name
-		} else {
-			return ""
 		}
 	}
 
 	getHtmlFromPostContext(context) {
-		console.log(context)
 		if (context != null) {
 			let content = JSON.parse(context)
-			// return post.section[0].name
 			return context
 		} else {
 			return "null"
@@ -99,7 +93,9 @@ class App extends Component {
 		const tags = this.state.post.tags.map((tag, index) => {
 			return (
 				<li key={tag._id}>
-					{tag.name}
+					<Link to={"/tag/" + tag.name}>
+						{tag.name}
+					</Link>
 				</li>
 			)
 		})
@@ -128,9 +124,15 @@ class App extends Component {
 				</div>
 
 				<div className="post-tag-container">
+					<hr />
 					<ul>
 						{tags}
 					</ul>
+				</div>
+				<div className="post-comment-container">
+					<FacebookProvider appId="514713555531948">
+						<Comments />
+					</FacebookProvider>
 				</div>
 			</div>
 		)
