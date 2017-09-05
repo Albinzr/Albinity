@@ -31,10 +31,14 @@ class App extends Component {
 			},
 			success: function(json) {
 				if (json.success) {
-					this.setState({
-						post: json.data,
-						html: JSON.parse(json.data.context).ops
-					})
+					if (json.data != null) {
+						this.setState({
+							post: json.data,
+							html: JSON.parse(json.data.context).ops
+						})
+					} else {
+						this.props.history.push("/notFound")
+					}
 				}
 			}.bind(this),
 			error: function(error) {
@@ -93,9 +97,7 @@ class App extends Component {
 		const tags = this.state.post.tags.map((tag, index) => {
 			return (
 				<li key={tag._id}>
-					<Link to={"/tag/" + tag.name}>
-						{tag.name}
-					</Link>
+					<Link to={"/tag/" + tag.name}>{tag.name}</Link>
 				</li>
 			)
 		})
@@ -110,9 +112,7 @@ class App extends Component {
 							&nbsp; &nbsp; &nbsp;
 						</li>
 						<li className="post-title">
-							<a>
-								{this.state.post.heading}
-							</a>
+							<a>{this.state.post.heading}</a>
 						</li>
 						<li className="post-category">
 							{this.getCategory(this.state.post)}
@@ -125,9 +125,7 @@ class App extends Component {
 
 				<div className="post-tag-container">
 					<hr />
-					<ul>
-						{tags}
-					</ul>
+					<ul>{tags}</ul>
 				</div>
 				<div className="post-comment-container">
 					<FacebookProvider appId="514713555531948">

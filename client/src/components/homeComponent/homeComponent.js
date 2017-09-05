@@ -5,6 +5,7 @@ let limit = 4
 let offset = 0
 class App extends Component {
 	constructor(props) {
+		console.log("constructor")
 		super(props)
 		this.state = {
 			posts: [],
@@ -15,22 +16,43 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this)
+		console.log("didMound")
+		offset = parseInt(this.props.match.params.offset)
 		switch (this.props.pageKey) {
 			case "home":
-				offset = 0
+				if (isNaN(offset)) {
+					offset = 0
+					let newOffset = offset + limit
+					this.props.history.replace("/home/" + newOffset)
+					break
+				}
 				this.getPosts()
 				break
 			case "tag":
-				offset = 0
+				let tagKey = this.props.match.params.slug
+				if (isNaN(offset)) {
+					offset = 0
+					let newOffset = offset + limit
+					this.props.history.replace(
+						"/tag/" + tagKey + "/" + newOffset
+					)
+					break
+				}
 				this.getPostByTag()
 				break
 			case "search":
-				offset = 0
+				let searchKey = this.props.match.params.slug
+				if (isNaN(offset)) {
+					offset = 0
+					let newOffset = offset + limit
+					this.props.history.replace(
+						"/search/" + searchKey + "/" + newOffset
+					)
+					break
+				}
 				this.getSearchResults()
 				break
 			default:
-				offset = 0
 				this.setState({
 					loadMore: false
 				})
@@ -39,12 +61,39 @@ class App extends Component {
 
 	loadMore() {
 		if (this.state.loadMore) {
-			offset = offset + 4
-			this.getPosts()
+			offset = offset + limit
+
+			console.log(offset, "current offset", offset, "newoffset")
+
+			switch (this.props.pageKey) {
+				case "home":
+					this.props.history.replace("/home/" + offset)
+					this.getPosts()
+					break
+				case "tag":
+					let tagKey = this.props.match.params.slug
+					this.props.history.replace("/tag/" + tagKey + "/" + offset)
+					this.getPostByTag()
+					break
+				case "search":
+					let searchKey = this.props.match.params.slug
+					this.props.history.replace(
+						"/search/" + searchKey + "/" + offset
+					)
+					this.getSearchResults()
+					break
+				default:
+					break
+			}
 		}
 	}
+
 	getSearchResults() {
 		let searchKey = this.props.match.params.slug
+		if (this.state.posts.length == 0 && offset != 0) {
+			limit = offset
+			offset = 0
+		}
 		let url =
 			"http://localhost:4000/api/search/" +
 			searchKey +
@@ -52,6 +101,7 @@ class App extends Component {
 			limit +
 			"&offset=" +
 			offset
+		console.log(url)
 		$.ajax({
 			url: url,
 			type: "GET",
@@ -59,42 +109,13 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				if (json.data.length < 4) {
-					this.setState({
-						loadMore: false
-					})
+				console.log(json)
+				if (this.state.posts.length == 0 && offset == 0) {
+					offset = limit
+					limit = 4
 				}
-				if (json.success) {
-					let currentPost = this.state.posts
-					let combineAllPost = currentPost.concat(json.data)
-					this.setState({
-						posts: combineAllPost
-					})
-				}
-			}.bind(this),
-			error: function(error) {
-				console.log("no network")
-			}
-		})
-	}
-	getPostByTag() {
-		let tagKey = this.props.match.params.slug
-		let url =
-			"http://localhost:4000/api/tag/" +
-			tagKey +
-			"?limit=" +
-			limit +
-			"&offset=" +
-			offset
-		$.ajax({
-			url: url,
-			type: "GET",
-			xhrFields: {
-				withCredentials: true
-			},
-			success: function(json) {
-				console.log(json.data)
-				if (json.data.length < 4) {
+
+				if (json.data.length < 4 || limit > json.data.length) {
 					this.setState({
 						loadMore: false
 					})
@@ -113,7 +134,60 @@ class App extends Component {
 		})
 	}
 
+	getPostByTag() {
+		let tagKey = this.props.match.params.slug
+		console.log(offset, "urlOffset")
+		if (this.state.posts.length == 0 && offset != 0) {
+			limit = offset
+			offset = 0
+		}
+
+		let url =
+			"http://localhost:4000/api/tag/" +
+			tagKey +
+			"?limit=" +
+			limit +
+			"&offset=" +
+			offset
+		console.log(url)
+		$.ajax({
+			url: url,
+			type: "GET",
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function(json) {
+				console.log(json)
+				if (this.state.posts.length == 0 && offset == 0) {
+					offset = limit
+					limit = 4
+				}
+
+				if (json.data.length < 4 || limit > json.data.length) {
+					this.setState({
+						loadMore: false
+					})
+				}
+				if (json.success) {
+					let currentPost = this.state.posts
+					let combineAllPost = currentPost.concat(json.data)
+					this.setState({
+						posts: combineAllPost
+					})
+				}
+			}.bind(this),
+			error: function(error) {
+				console.log("no network")
+			}
+		})
+	}
 	getPosts() {
+		console.log(offset, "urlOffset")
+		if (this.state.posts.length == 0 && offset != 0) {
+			limit = offset
+			offset = 0
+		}
+
 		let url =
 			"http://localhost:4000/api/post?limit=" +
 			limit +
@@ -126,7 +200,13 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				if (json.data.length < 4) {
+				console.log(json)
+				if (this.state.posts.length == 0 && offset == 0) {
+					offset = limit
+					limit = 4
+				}
+
+				if (json.data.length < 4 || limit > json.data.length) {
 					this.setState({
 						loadMore: false
 					})
@@ -178,7 +258,7 @@ class App extends Component {
 		const posts = this.state.posts.map((post, index) => {
 			// let postLink = "/post/" + {post.slug}
 			return (
-				<div key={post.publishedDate}>
+				<div key={index}>
 					<div className="post-header">
 						<ul>
 							<li className="post-data">
