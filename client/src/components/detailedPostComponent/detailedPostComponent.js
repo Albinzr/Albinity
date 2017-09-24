@@ -18,10 +18,12 @@ class App extends Component {
 
 	componentDidMount() {
 		this.getPost()
+		console.log(document, "ref details")
 	}
 
 	getPost() {
 		let slug = this.props.match.params.slug
+		console.log(this.props)
 		let url = "http://localhost:4000/api/post/" + slug
 		$.ajax({
 			url: url,

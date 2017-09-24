@@ -16,8 +16,9 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log("didMound")
+		console.log("didMound", this.state.posts, this.props.location.action)
 		offset = parseInt(this.props.match.params.offset)
+
 		switch (this.props.pageKey) {
 			case "home":
 				if (isNaN(offset)) {

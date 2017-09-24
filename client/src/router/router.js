@@ -1,5 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import history from "./history.js"
+
 import Home from "../components/homeComponent/homeComponent.js"
 import Search from "../components/searchComponent/searchComponent.js"
 import Login from "../components/loginComponent/loginComponent.js"
@@ -11,6 +13,7 @@ import DetailedPost from "../components/detailedPostComponent/detailedPostCompon
 const isAuthenticated = () => {
 	return true
 }
+
 const NoMatch = ({ location }) => (
 	<div>
 		<h3>
