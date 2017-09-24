@@ -28,7 +28,7 @@ class App extends Component {
 	getPosts() {
 		let searchKey = this.props.match.params.slug
 		let url =
-			"http://localhost:4000/api/search/" +
+			"http://localhost:9000/api/search/" +
 			searchKey +
 			"?limit=" +
 			limit +

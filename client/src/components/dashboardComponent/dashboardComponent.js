@@ -67,7 +67,7 @@ class App extends Component {
 	}
 
 	getCategories() {
-		let url = "http://localhost:4000/api/category"
+		let url = "http://localhost:9000/api/category"
 		$.ajax({
 			url: url,
 			type: "GET",
@@ -128,7 +128,7 @@ class App extends Component {
 				xhrFields: {
 					withCredentials: true
 				},
-				url: "http://localhost:4000/profile",
+				url: "http://localhost:9000/profile",
 				dataType: "json",
 				data: formData
 			})
@@ -216,7 +216,7 @@ class App extends Component {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: "http://localhost:4000/api/post",
+			url: "http://localhost:9000/api/post",
 			data: {
 				heading: heading,
 				subHeading: subHeading,
