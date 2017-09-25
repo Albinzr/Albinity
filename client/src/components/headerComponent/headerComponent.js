@@ -33,7 +33,7 @@ class App extends Component {
 		}
 	}
 	getCategories() {
-		let url = "http://localhost:9000/api/category"
+		let url = "/api/category"
 
 		$.ajax({
 			url: url,

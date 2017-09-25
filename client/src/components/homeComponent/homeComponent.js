@@ -96,7 +96,7 @@ class App extends Component {
 			offset = 0
 		}
 		let url =
-			"http://localhost:9000/api/search/" +
+			"/api/search/" +
 			searchKey +
 			"?limit=" +
 			limit +
@@ -144,7 +144,7 @@ class App extends Component {
 		}
 
 		let url =
-			"http://localhost:9000/api/tag/" +
+			"/api/tag/" +
 			tagKey +
 			"?limit=" +
 			limit +
@@ -190,7 +190,7 @@ class App extends Component {
 		}
 
 		let url =
-			"http://localhost:9000/api/post?limit=" +
+			"/api/post?limit=" +
 			limit +
 			"&offset=" +
 			offset

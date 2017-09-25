@@ -17,7 +17,7 @@ import config from "./config/"
 
 module.exports = function(app) {
 	var allowCrossDomain = function(req, res, next) {
-		res.header("Access-Control-Allow-Origin", "http://localhost:3000")
+		res.header("Access-Control-Allow-Origin", ["http://albin.in","http://localhost:3000"])
 		res.header(
 			"Access-Control-Allow-Methods",
 			"GET,PUT,POST,DELETE,OPTIONS"

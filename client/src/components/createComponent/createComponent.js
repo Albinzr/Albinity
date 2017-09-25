@@ -50,7 +50,7 @@
 // 			xhrFields: {
 // 				withCredentials: true
 // 			},
-// 			url: "http://localhost:9000/api/create",
+// 			url: "/api/create",
 // 			dataType: "json",
 // 			data: formData
 // 		})

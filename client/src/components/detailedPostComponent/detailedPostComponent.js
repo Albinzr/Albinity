@@ -24,7 +24,7 @@ class App extends Component {
 	getPost() {
 		let slug = this.props.match.params.slug
 		console.log(this.props)
-		let url = "http://localhost:9000/api/post/" + slug
+		let url = "/api/post/" + slug
 		$.ajax({
 			url: url,
 			type: "GET",
