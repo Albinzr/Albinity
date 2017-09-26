@@ -11,5 +11,6 @@ if (cluster.isMaster) {
 		console.log("worker " + worker.process.pid + " died")
 	})
 } else {
+	console.log(process.env.NODE_ENV);
 	require("./server")
 }

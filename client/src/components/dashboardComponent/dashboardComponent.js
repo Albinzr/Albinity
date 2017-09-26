@@ -1,20 +1,21 @@
-import React, { Component } from "react"
-import ReactQuill from "react-quill"
-import ReactDOM from "react-dom"
-import $ from "jquery"
+import React, { Component } from 'react'
+import ReactQuill from 'react-quill'
+import ReactDOM from 'react-dom'
+import $ from 'jquery'
+import { baseUrl } from '../../helper/common'
 
-import ReactToastr, { ToastContainer } from "react-toastr"
+import ReactToastr, { ToastContainer } from 'react-toastr'
 
 class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			heading: "",
-			subHeading: "",
-			editorHtml: "",
-			theme: "snow",
-			delta: "",
-			userInput: "",
+			heading: '',
+			subHeading: '',
+			editorHtml: '',
+			theme: 'snow',
+			delta: '',
+			userInput: '',
 			categories: [],
 			selectedCategories: []
 		}
@@ -32,10 +33,10 @@ class App extends Component {
 			toolbar: {
 				container: [
 					[{ header: 1 }],
-					["bold", "italic", "underline", "strike"], // toggled buttons
-					["blockquote"],
-					["link", "video", "image"],
-					[{ list: "ordered" }, { list: "bullet" }],
+					['bold', 'italic', 'underline', 'strike'], // toggled buttons
+					['blockquote'],
+					['link', 'video', 'image'],
+					[{ list: 'ordered' }, { list: 'bullet' }],
 					[{ align: [] }]
 				],
 				handlers: {
@@ -67,10 +68,10 @@ class App extends Component {
 	}
 
 	getCategories() {
-		let url = "/api/category"
+		let url = baseUrl + '/api/category'
 		$.ajax({
 			url: url,
-			type: "GET",
+			type: 'GET',
 			xhrFields: {
 				withCredentials: true
 			},
@@ -82,7 +83,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log("no network")
+				console.log('no network')
 			}
 		})
 	}
@@ -94,7 +95,7 @@ class App extends Component {
 	}
 
 	getFirstImageFromHtml(delta) {
-		if (delta == null || delta == undefined || delta == "") {
+		if (delta == null || delta == undefined || delta == '') {
 			return
 		}
 		for (let value of delta.ops) {
@@ -107,36 +108,36 @@ class App extends Component {
 	imageHandler = (image, callback) => {
 		var range = this.quillRef.getEditor().getSelection()
 		let eventTargetParent = this.quillRef.getEditor().container.parentNode
-		let inputTag = document.createElement("input")
+		let inputTag = document.createElement('input')
 		this.setElementAttributesHelper(inputTag, {
-			class: "imUpload",
-			type: "file",
-			accept: "image/*",
-			style: "display:none;"
+			class: 'imUpload',
+			type: 'file',
+			accept: 'image/*',
+			style: 'display:none;'
 		})
 		eventTargetParent.appendChild(inputTag)
-		inputTag.addEventListener("change", event => {
+		inputTag.addEventListener('change', event => {
 			var formData = new FormData()
-			formData.append("image", event.target.files[0])
+			formData.append('image', event.target.files[0])
 
 			$.ajax({
-				type: "POST",
-				enctype: "multipart/form-data",
+				type: 'POST',
+				enctype: 'multipart/form-data',
 				cache: false,
 				processData: false,
 				contentType: false,
 				xhrFields: {
 					withCredentials: true
 				},
-				url: "/profile",
-				dataType: "json",
+				url: baseUrl + '/profile',
+				dataType: 'json',
 				data: formData
 			})
 				.done(
 					function(data, status, xhr) {
 						return this.quillRef
 							.getEditor()
-							.insertEmbed(range.index, "image", data.url)
+							.insertEmbed(range.index, 'image', data.url)
 					}.bind(this)
 				)
 				.fail(function(xhr, status, err) {
@@ -166,19 +167,19 @@ class App extends Component {
 		if (
 			tagsString == null ||
 			tagsString == undefined ||
-			tagsString == "" ||
+			tagsString == '' ||
 			tagsString.count == 0
 		) {
 			this.alert(errorMessage)
 			return false
 		}
-		return JSON.stringify(tagsString.split(","))
+		return JSON.stringify(tagsString.split(','))
 	}
 	createCategory(categoryString, errorMessage) {
 		if (
 			categoryString == null ||
 			categoryString == undefined ||
-			categoryString == "" ||
+			categoryString == '' ||
 			categoryString.count == 0
 		) {
 			this.alert(errorMessage)
@@ -188,21 +189,15 @@ class App extends Component {
 	}
 
 	alert(description) {
-		this.container.error(
-			<strong />,
-			<p>
-				{description}
-			</p>,
-			{
-				timeOut: 5000,
-				showAnimation: "animated fadeIn", //or other animations from animate.css
-				hideAnimation: "animated fadeOut",
-				closeButton: true
-			}
-		)
+		this.container.error(<strong />, <p>{description}</p>, {
+			timeOut: 5000,
+			showAnimation: 'animated fadeIn', //or other animations from animate.css
+			hideAnimation: 'animated fadeOut',
+			closeButton: true
+		})
 	}
 	validationCheckForString(data, errorMessage) {
-		if (data == null || data == undefined || data == "") {
+		if (data == null || data == undefined || data == '') {
 			this.alert(errorMessage)
 			return false
 		} else {
@@ -212,16 +207,16 @@ class App extends Component {
 
 	sendPost(heading, subHeading, context, mainImage, tags, category) {
 		$.ajax({
-			type: "POST",
+			type: 'POST',
 			xhrFields: {
 				withCredentials: true
 			},
-			url: "/api/post",
+			url: baseUrl + '/api/post',
 			data: {
 				heading: heading,
 				subHeading: subHeading,
 				context: context,
-				section: "sadsa",
+
 				tags: tags,
 				category: category,
 				mainImage: mainImage,
@@ -231,7 +226,7 @@ class App extends Component {
 			.done(
 				function(data, status, xhr) {
 					if (data.success) {
-						console.log("uploaded")
+						console.log('uploaded')
 					}
 				}.bind(this)
 			)
@@ -245,30 +240,27 @@ class App extends Component {
 		event.preventDefault()
 		const heading = this.validationCheckForString(
 			this.state.heading,
-			"Enter a valid heading"
+			'Enter a valid heading'
 		)
 		const subHeading = this.validationCheckForString(
 			this.state.subHeading,
-			"Enter a valid summary"
+			'Enter a valid summary'
 		)
 		const context = this.validationCheckForString(
 			JSON.stringify(this.state.delta),
-			"Enter proper content for your post"
+			'Enter proper content for your post'
 		)
 
 		const mainImage = this.validationCheckForString(
 			this.getFirstImageFromHtml(this.state.delta),
-			"Upload atleast one image"
+			'Upload atleast one image'
 		)
 
-		const tags = this.createTagArray(
-			this.refs.tags.value,
-			"Enter some tags"
-		)
+		const tags = this.createTagArray(this.refs.tags.value, 'Enter some tags')
 
 		const category = this.createCategory(
 			this.state.selectedCategories,
-			"Select atleast one catrgory"
+			'Select atleast one catrgory'
 		)
 		if (
 			heading &&
@@ -278,14 +270,7 @@ class App extends Component {
 			tags &&
 			category !== false
 		) {
-			this.sendPost(
-				heading,
-				subHeading,
-				context,
-				mainImage,
-				tags,
-				category
-			)
+			this.sendPost(heading, subHeading, context, mainImage, tags, category)
 		}
 	}
 
@@ -299,9 +284,7 @@ class App extends Component {
 						data-att={category.name}
 						onChange={this.categoryCheck}
 					/>
-					<label>
-						{category.name}
-					</label>
+					<label>{category.name}</label>
 				</li>
 			)
 		})
@@ -331,7 +314,7 @@ class App extends Component {
 					value={this.state.editorHtml}
 					modules={this.modules}
 					formats={this.formats}
-					bounds={".app"}
+					bounds={'.app'}
 					placeholder={this.props.placeholder}
 					required
 				/>
@@ -350,9 +333,7 @@ class App extends Component {
 				</div>
 				<div className="dashboard-category-container">
 					<p>Select Categories</p>
-					<ul>
-						{categories}
-					</ul>
+					<ul>{categories}</ul>
 				</div>
 
 				<button className="dashboard-save" onClick={this.save}>

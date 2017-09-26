@@ -1,9 +1,10 @@
-import React, { Component } from "react"
-import $ from "jquery"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-import ReactQuill from "react-quill"
-import QuillDeltaToHtmlConverter from "quill-delta-to-html"
-import FacebookProvider, { Comments } from "react-facebook"
+import React, { Component } from 'react'
+import $ from 'jquery'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import ReactQuill from 'react-quill'
+import QuillDeltaToHtmlConverter from 'quill-delta-to-html'
+import FacebookProvider, { Comments } from 'react-facebook'
+import { baseUrl } from '../../helper/common'
 
 class App extends Component {
 	constructor(props) {
@@ -18,16 +19,16 @@ class App extends Component {
 
 	componentDidMount() {
 		this.getPost()
-		console.log(document, "ref details")
+		console.log(document, 'ref details')
 	}
 
 	getPost() {
 		let slug = this.props.match.params.slug
 		console.log(this.props)
-		let url = "/api/post/" + slug
+		let url = baseUrl + '/api/post/' + slug
 		$.ajax({
 			url: url,
-			type: "GET",
+			type: 'GET',
 			xhrFields: {
 				withCredentials: true
 			},
@@ -39,12 +40,12 @@ class App extends Component {
 							html: JSON.parse(json.data.context).ops
 						})
 					} else {
-						this.props.history.push("/notFound")
+						this.props.history.push('/notFound')
 					}
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log("no network")
+				console.log('no network')
 			}
 		})
 	}
@@ -58,25 +59,25 @@ class App extends Component {
 
 	formateDate = timeStamp => {
 		var monthShortNames = [
-			"JAN",
-			"FEB",
-			"MAR",
-			"APR",
-			"MAY",
-			"JUN",
-			"JUl",
-			"AUG",
-			"SEP",
-			"OCT",
-			"NOV",
-			"DEC"
+			'JAN',
+			'FEB',
+			'MAR',
+			'APR',
+			'MAY',
+			'JUN',
+			'JUl',
+			'AUG',
+			'SEP',
+			'OCT',
+			'NOV',
+			'DEC'
 		]
 		let formated = new Date(timeStamp)
 		return (
 			formated.getDate() +
-			"TH " +
+			'TH ' +
 			monthShortNames[formated.getMonth() + 1] +
-			" " +
+			' ' +
 			formated.getFullYear()
 		)
 	}
@@ -91,7 +92,7 @@ class App extends Component {
 			let content = JSON.parse(context)
 			return context
 		} else {
-			return "null"
+			return 'null'
 		}
 	}
 
@@ -99,7 +100,7 @@ class App extends Component {
 		const tags = this.state.post.tags.map((tag, index) => {
 			return (
 				<li key={tag._id}>
-					<Link to={"/tag/" + tag.name}>{tag.name}</Link>
+					<Link to={'/tag/' + tag.name}>{tag.name}</Link>
 				</li>
 			)
 		})

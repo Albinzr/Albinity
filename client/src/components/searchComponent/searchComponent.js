@@ -1,6 +1,7 @@
-import React, { Component } from "react"
-import $ from "jquery"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import React, { Component } from 'react'
+import $ from 'jquery'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { baseUrl } from '../../helper/common'
 let limit = 4
 let offset = 0
 let loadMore = true
@@ -28,15 +29,16 @@ class App extends Component {
 	getPosts() {
 		let searchKey = this.props.match.params.slug
 		let url =
-			"/api/search/" +
+			baseUrl +
+			'/api/search/' +
 			searchKey +
-			"?limit=" +
+			'?limit=' +
 			limit +
-			"&offset=" +
+			'&offset=' +
 			offset
 		$.ajax({
 			url: url,
-			type: "GET",
+			type: 'GET',
 			xhrFields: {
 				withCredentials: true
 			},
@@ -53,7 +55,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log("no network")
+				console.log('no network')
 			}
 		})
 	}
@@ -62,30 +64,30 @@ class App extends Component {
 		if (post.category != null) {
 			return post.category[0].name
 		} else {
-			return ""
+			return ''
 		}
 	}
 	formateDate = timeStamp => {
 		var monthShortNames = [
-			"JAN",
-			"FEB",
-			"MAR",
-			"APR",
-			"MAY",
-			"JUN",
-			"JUl",
-			"AUG",
-			"SEP",
-			"OCT",
-			"NOV",
-			"DEC"
+			'JAN',
+			'FEB',
+			'MAR',
+			'APR',
+			'MAY',
+			'JUN',
+			'JUl',
+			'AUG',
+			'SEP',
+			'OCT',
+			'NOV',
+			'DEC'
 		]
 		let formated = new Date(timeStamp)
 		return (
 			formated.getDate() +
-			"TH " +
+			'TH ' +
 			monthShortNames[formated.getMonth() + 1] +
-			" " +
+			' ' +
 			formated.getFullYear()
 		)
 	}
@@ -115,8 +117,8 @@ class App extends Component {
 					<h2>No results</h2>
 					<p>
 						<em>
-							We searched far and wide and couldn't <br />find
-							anyone matching your search.
+							We searched far and wide and couldn't <br />find anyone matching
+							your search.
 						</em>
 					</p>
 				</div>
@@ -134,26 +136,20 @@ class App extends Component {
 								&nbsp; &nbsp; &nbsp;
 							</li>
 							<li className="post-title">
-								<Link to={"/post/" + post.slug}>
-									{post.heading}
-								</Link>
+								<Link to={'/post/' + post.slug}>{post.heading}</Link>
 							</li>
-							<li className="post-category">
-								{this.getCategory(post)}
-							</li>
+							<li className="post-category">{this.getCategory(post)}</li>
 						</ul>
 					</div>
 					<div className="post-container">
 						<div className="post-media">
-							<Link to={"/post/" + post.slug}>
+							<Link to={'/post/' + post.slug}>
 								<img src={post.mainImage} />
 							</Link>
 						</div>
 
 						<div className="post-summary">
-							<p>
-								{post.subHeading}
-							</p>
+							<p>{post.subHeading}</p>
 						</div>
 
 						<div className="post-more-details">
@@ -171,9 +167,7 @@ class App extends Component {
 							<div className="post-continue-reading">
 								<ul>
 									<li>
-										<Link to={"/post/" + post.slug}>
-											Continue Reading
-										</Link>
+										<Link to={'/post/' + post.slug}>Continue Reading</Link>
 									</li>
 								</ul>
 							</div>
@@ -198,7 +192,7 @@ class App extends Component {
 					<button
 						className="load-more"
 						onClick={this.loadMore}
-						style={{ display: loadMore ? "block" : "none" }}
+						style={{ display: loadMore ? 'block' : 'none' }}
 					>
 						Load More
 					</button>

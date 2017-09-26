@@ -1,11 +1,12 @@
-import React, { Component } from "react"
-import $ from "jquery"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import React, { Component } from 'react'
+import $ from 'jquery'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { baseUrl } from '../../helper/common'
 let limit = 4
 let offset = 0
 class App extends Component {
 	constructor(props) {
-		console.log("constructor")
+		console.log('constructor')
 		super(props)
 		this.state = {
 			posts: [],
@@ -16,39 +17,35 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log("didMound", this.state.posts, this.props.location.action)
+		console.log('didMound', this.state.posts, this.props.location.action)
 		offset = parseInt(this.props.match.params.offset)
 
 		switch (this.props.pageKey) {
-			case "home":
+			case 'home':
 				if (isNaN(offset)) {
 					offset = 0
 					let newOffset = offset + limit
-					this.props.history.replace("/home/" + newOffset)
+					this.props.history.replace('/home/' + newOffset)
 					break
 				}
 				this.getPosts()
 				break
-			case "tag":
+			case 'tag':
 				let tagKey = this.props.match.params.slug
 				if (isNaN(offset)) {
 					offset = 0
 					let newOffset = offset + limit
-					this.props.history.replace(
-						"/tag/" + tagKey + "/" + newOffset
-					)
+					this.props.history.replace('/tag/' + tagKey + '/' + newOffset)
 					break
 				}
 				this.getPostByTag()
 				break
-			case "search":
+			case 'search':
 				let searchKey = this.props.match.params.slug
 				if (isNaN(offset)) {
 					offset = 0
 					let newOffset = offset + limit
-					this.props.history.replace(
-						"/search/" + searchKey + "/" + newOffset
-					)
+					this.props.history.replace('/search/' + searchKey + '/' + newOffset)
 					break
 				}
 				this.getSearchResults()
@@ -64,23 +61,21 @@ class App extends Component {
 		if (this.state.loadMore) {
 			offset = offset + limit
 
-			console.log(offset, "current offset", offset, "newoffset")
+			console.log(offset, 'current offset', offset, 'newoffset')
 
 			switch (this.props.pageKey) {
-				case "home":
-					this.props.history.replace("/home/" + offset)
+				case 'home':
+					this.props.history.replace('/home/' + offset)
 					this.getPosts()
 					break
-				case "tag":
+				case 'tag':
 					let tagKey = this.props.match.params.slug
-					this.props.history.replace("/tag/" + tagKey + "/" + offset)
+					this.props.history.replace('/tag/' + tagKey + '/' + offset)
 					this.getPostByTag()
 					break
-				case "search":
+				case 'search':
 					let searchKey = this.props.match.params.slug
-					this.props.history.replace(
-						"/search/" + searchKey + "/" + offset
-					)
+					this.props.history.replace('/search/' + searchKey + '/' + offset)
 					this.getSearchResults()
 					break
 				default:
@@ -96,16 +91,17 @@ class App extends Component {
 			offset = 0
 		}
 		let url =
-			"/api/search/" +
+			baseUrl +
+			'/api/search/' +
 			searchKey +
-			"?limit=" +
+			'?limit=' +
 			limit +
-			"&offset=" +
+			'&offset=' +
 			offset
 		console.log(url)
 		$.ajax({
 			url: url,
-			type: "GET",
+			type: 'GET',
 			xhrFields: {
 				withCredentials: true
 			},
@@ -130,30 +126,25 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log("no network")
+				console.log('no network')
 			}
 		})
 	}
 
 	getPostByTag() {
 		let tagKey = this.props.match.params.slug
-		console.log(offset, "urlOffset")
+		console.log(offset, 'urlOffset')
 		if (this.state.posts.length == 0 && offset != 0) {
 			limit = offset
 			offset = 0
 		}
 
 		let url =
-			"/api/tag/" +
-			tagKey +
-			"?limit=" +
-			limit +
-			"&offset=" +
-			offset
+			baseUrl + '/api/tag/' + tagKey + '?limit=' + limit + '&offset=' + offset
 		console.log(url)
 		$.ajax({
 			url: url,
-			type: "GET",
+			type: 'GET',
 			xhrFields: {
 				withCredentials: true
 			},
@@ -178,25 +169,21 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log("no network")
+				console.log('no network')
 			}
 		})
 	}
 	getPosts() {
-		console.log(offset, "urlOffset")
+		console.log(offset, 'urlOffset')
 		if (this.state.posts.length == 0 && offset != 0) {
 			limit = offset
 			offset = 0
 		}
 
-		let url =
-			"/api/post?limit=" +
-			limit +
-			"&offset=" +
-			offset
+		let url = baseUrl + '/api/post?limit=' + limit + '&offset=' + offset
 		$.ajax({
 			url: url,
-			type: "GET",
+			type: 'GET',
 			xhrFields: {
 				withCredentials: true
 			},
@@ -221,7 +208,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log("no network")
+				console.log('no network')
 			}
 		})
 	}
@@ -233,25 +220,25 @@ class App extends Component {
 	render() {
 		const formateDate = timeStamp => {
 			var monthShortNames = [
-				"JAN",
-				"FEB",
-				"MAR",
-				"APR",
-				"MAY",
-				"JUN",
-				"JUl",
-				"AUG",
-				"SEP",
-				"OCT",
-				"NOV",
-				"DEC"
+				'JAN',
+				'FEB',
+				'MAR',
+				'APR',
+				'MAY',
+				'JUN',
+				'JUl',
+				'AUG',
+				'SEP',
+				'OCT',
+				'NOV',
+				'DEC'
 			]
 			let formated = new Date(timeStamp)
 			return (
 				formated.getDate() +
-				"TH " +
+				'TH ' +
 				monthShortNames[formated.getMonth() + 1] +
-				" " +
+				' ' +
 				formated.getFullYear()
 			)
 		}
@@ -268,18 +255,14 @@ class App extends Component {
 								&nbsp; &nbsp; &nbsp;
 							</li>
 							<li className="post-title">
-								<Link to={"/post/" + post.slug}>
-									{post.heading}
-								</Link>
+								<Link to={'/post/' + post.slug}>{post.heading}</Link>
 							</li>
-							<li className="post-category">
-								{this.getCategory(post)}
-							</li>
+							<li className="post-category">{this.getCategory(post)}</li>
 						</ul>
 					</div>
 					<div className="post-container">
 						<div className="post-media">
-							<Link to={"/post/" + post.slug}>
+							<Link to={'/post/' + post.slug}>
 								<img src={post.mainImage} />
 							</Link>
 						</div>
@@ -303,9 +286,7 @@ class App extends Component {
 							<div className="post-continue-reading">
 								<ul>
 									<li>
-										<Link to={"/post/" + post.slug}>
-											Continue Reading
-										</Link>
+										<Link to={'/post/' + post.slug}>Continue Reading</Link>
 									</li>
 								</ul>
 							</div>
@@ -331,7 +312,7 @@ class App extends Component {
 						className="load-more"
 						onClick={this.loadMore}
 						style={{
-							display: this.state.loadMore ? "block" : "none"
+							display: this.state.loadMore ? 'block' : 'none'
 						}}
 					>
 						Load More

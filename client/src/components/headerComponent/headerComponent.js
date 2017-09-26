@@ -1,5 +1,6 @@
-import React, { Component } from "react"
-import $ from "jquery"
+import React, { Component } from 'react'
+import $ from 'jquery'
+import { baseUrl } from '../../helper/common'
 
 class App extends Component {
 	constructor(props) {
@@ -14,30 +15,30 @@ class App extends Component {
 	}
 
 	search(event) {
-		if (event.key == "Enter") {
+		if (event.key == 'Enter') {
 			var baseUrl = window.location.origin
-			return (window.location = baseUrl + "/search/" + event.target.value)
+			return (window.location = baseUrl + '/search/' + event.target.value)
 		}
 	}
 	showCategoryMenu(event) {
-		var element = document.body.getElementsByClassName("category-menu")
+		var element = document.body.getElementsByClassName('category-menu')
 		if (element[0] != null) {
-			element[0].style.display = "block"
+			element[0].style.display = 'block'
 		}
 	}
 	hideCategoryMenu(event) {
-		console.log("kkkkkk")
-		var element = document.body.getElementsByClassName("category-menu")
+		console.log('kkkkkk')
+		var element = document.body.getElementsByClassName('category-menu')
 		if (element[0] != null) {
-			element[0].style.display = "none"
+			element[0].style.display = 'none'
 		}
 	}
 	getCategories() {
-		let url = "/api/category"
+		let url = baseUrl + '/api/category'
 
 		$.ajax({
 			url: url,
-			type: "GET",
+			type: 'GET',
 			xhrFields: {
 				withCredentials: true
 			},
@@ -49,18 +50,14 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log("no network")
+				console.log('no network')
 			}
 		})
 	}
 
 	render() {
 		let categories = this.state.categories.map((category, index) => {
-			return (
-				<li key={index}>
-					{category.name}
-				</li>
-			)
+			return <li key={index}>{category.name}</li>
 		})
 		return (
 			<nav>
@@ -76,13 +73,9 @@ class App extends Component {
 									onMouseOver={this.showCategoryMenu}
 									onMouseLeave={this.hideCategoryMenu}
 								>
-									<span onClick={this.showCategoryMenu}>
-										Category
-									</span>
+									<span onClick={this.showCategoryMenu}>Category</span>
 									<div className="category-menu">
-										<ul style={{ display: "block" }}>
-											{categories}
-										</ul>
+										<ul style={{ display: 'block' }}>{categories}</ul>
 									</div>
 								</li>
 								<li>

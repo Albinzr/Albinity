@@ -50,7 +50,7 @@
 // 			xhrFields: {
 // 				withCredentials: true
 // 			},
-// 			url: "/api/create",
+// 			/create",
 // 			dataType: "json",
 // 			data: formData
 // 		})
