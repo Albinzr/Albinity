@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill'
 import QuillDeltaToHtmlConverter from 'quill-delta-to-html'
 import FacebookProvider, { Comments } from 'react-facebook'
 import { baseUrl } from '../../helper/common'
+import { Helmet } from 'react-helmet'
 
 class App extends Component {
 	constructor(props) {
@@ -95,6 +96,31 @@ class App extends Component {
 			return 'null'
 		}
 	}
+	share(shareType) {
+		switch (shareType) {
+			case 'facebook':
+				window.open(
+					'https://www.facebook.com/sharer/sharer.php?u=' +
+						encodeURIComponent(location.href),
+					'facebook-share-dialog',
+					'width=626,height=436'
+				)
+				return false
+			case 'twitter':
+				window.open(
+					'https://twitter.com/intent/tweet?text=' +
+						encodeURIComponent(location.href)
+				)
+				return false
+			case 'whatsapp':
+				window.open(
+					'https://web.whatsapp.com/send?text=' +
+						encodeURIComponent(location.href)
+				)
+				return false
+			default:
+		}
+	}
 
 	render() {
 		const tags = this.state.post.tags.map((tag, index) => {
@@ -107,6 +133,16 @@ class App extends Component {
 
 		return (
 			<div className="detailed-post">
+				<Helmet>
+					<title>{this.state.post.heading}</title>
+					<meta property="og:title" content={this.state.post.heading} />
+					<meta property="og:image" content={this.state.post.mainImage} />
+					<meta property="og:site_name" content="http://albin.in" />
+					<meta
+						property="og:description"
+						content={this.state.post.subHeading}
+					/>
+				</Helmet>
 				<div className="post-header">
 					<ul>
 						<li className="post-data">
@@ -124,6 +160,34 @@ class App extends Component {
 				</div>
 				<div className="post-container">
 					<div dangerouslySetInnerHTML={this.getHtml()} />
+
+					<div className="post-more-details">
+						<div className="post-share">
+							<ul>
+								<li>
+									SHARE <span>|</span>
+								</li>
+								<li
+									className="fa fa-facebook"
+									onClick={() => {
+										this.share('facebook')
+									}}
+								/>
+								<li
+									className="fa fa-twitter"
+									onClick={() => {
+										this.share('twitter')
+									}}
+								/>
+								<li
+									className="fa fa-whatsapp"
+									onClick={() => {
+										this.share('whatsapp')
+									}}
+								/>
+							</ul>
+						</div>
+					</div>
 				</div>
 
 				<div className="post-tag-container">

@@ -9,6 +9,7 @@
 		"react-color": "^2.13.3",
 		"react-dom": "^15.6.1",
 		"react-facebook": "^4.0.14",
+		"react-helmet": "^5.2.0",
 		"react-notification-system": "^0.2.15",
 		"react-nowtify": "^0.3.2",
 		"react-quill": "v1.0.0",

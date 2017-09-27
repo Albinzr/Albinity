@@ -217,6 +217,32 @@ class App extends Component {
 		return post.category[0].name
 	}
 
+	share = shareType => {
+		switch (shareType) {
+			case 'facebook':
+				window.open(
+					'https://www.facebook.com/sharer/sharer.php?u=' +
+						encodeURIComponent(location.href),
+					'facebook-share-dialog',
+					'width=626,height=436'
+				)
+				return false
+			case 'twitter':
+				window.open(
+					'https://twitter.com/intent/tweet?text=' +
+						encodeURIComponent(location.href)
+				)
+				return false
+			case 'whatsapp':
+				window.open(
+					'https://web.whatsapp.com/send?text=' +
+						encodeURIComponent(location.href)
+				)
+				return false
+			default:
+		}
+	}
+
 	render() {
 		const formateDate = timeStamp => {
 			var monthShortNames = [
@@ -277,9 +303,24 @@ class App extends Component {
 									<li>
 										SHARE <span>|</span>
 									</li>
-									<li className="fa fa-facebook" />
-									<li className="fa fa-twitter" />
-									<li className="fa fa-whatsapp" />
+									<li
+										className="fa fa-facebook"
+										onClick={() => {
+											this.share('facebook')
+										}}
+									/>
+									<li
+										className="fa fa-twitter"
+										onClick={() => {
+											this.share('twitter')
+										}}
+									/>
+									<li
+										className="fa fa-whatsapp"
+										onClick={() => {
+											this.share('whatsapp')
+										}}
+									/>
 								</ul>
 							</div>
 
@@ -290,11 +331,11 @@ class App extends Component {
 									</li>
 								</ul>
 							</div>
-
 							<div className="post-comments">
 								<ul>
-									<li>Comment</li>
-									<li>13</li>
+									<Link to={'/post/' + post.slug}>
+										<li>Comment</li>
+									</Link>
 								</ul>
 							</div>
 						</div>

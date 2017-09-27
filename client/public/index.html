@@ -1,15 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css">
+
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="Albi">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css">
+      <meta name="author" content="Albin CR">
+
 <style>
     @media (max-width: 799px) {
         #root{
@@ -30,9 +31,10 @@
       }
 
 </style>
+
 <script>
 ;(function(i, s, o, g, r, a, m) {
-	i["GoogleAnalyticsObject"] = r
+	i['GoogleAnalyticsObject'] = r
 	;(i[r] =
 		i[r] ||
 		function() {
@@ -46,14 +48,15 @@
 })(
 	window,
 	document,
-	"script",
-	"https://www.google-analytics.com/analytics.js",
-	"ga"
+	'script',
+	'https://www.google-analytics.com/analytics.js',
+	'ga'
 )
 
-ga("create", "UA-105878025-1", "auto")
-ga("send", "pageview")
+ga('create', 'UA-105878025-1', 'auto')
+ga('send', 'pageview')
 </script>
+
   </head>
   <body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
     <div id="root"></div>
@@ -63,21 +66,21 @@ ga("send", "pageview")
 
         </h1>
     </div>
-    <div id="fb-root" />
+    <div id="fb-root"></div>
+
   </body>
   <script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   crossorigin="anonymous" ></script>
   <script>
-//Helpers
-function $$(selectors, context) {
-	return typeof selectors === "string"
+  function $$(selectors, context) {
+	return typeof selectors === 'string'
 		? (context || document).querySelectorAll(selectors)
 		: [selectors]
 }
 function $(selector, context) {
-	return typeof selector === "string"
+	return typeof selector === 'string'
 		? (context || document).querySelector(selector)
 		: selector
 }
@@ -95,10 +98,10 @@ function create(tag, attr) {
 function whichTransitionEnd() {
 	var root = document.documentElement
 	var transitions = {
-		transition: "transitionend",
-		WebkitTransition: "webkitTransitionEnd",
-		MozTransition: "mozTransitionEnd",
-		OTransition: "oTransitionEnd otransitionend"
+		transition: 'transitionend',
+		WebkitTransition: 'webkitTransitionEnd',
+		MozTransition: 'mozTransitionEnd',
+		OTransition: 'oTransitionEnd otransitionend'
 	}
 
 	for (var t in transitions) {
@@ -120,16 +123,16 @@ function oneListener(el, type, fn, capture) {
 	)
 }
 function hasClass(cls, el) {
-	return new RegExp("(^|\\s+)" + cls + "(\\s+|$)").test(el.className)
+	return new RegExp('(^|\\s+)' + cls + '(\\s+|$)').test(el.className)
 }
 function addClass(cls, el) {
 	if (!hasClass(cls, el))
-		return (el.className += el.className === "" ? cls : " " + cls)
+		return (el.className += el.className === '' ? cls : ' ' + cls)
 }
 function removeClass(cls, el) {
 	el.className = el.className.replace(
-		new RegExp("(^|\\s+)" + cls + "(\\s+|$)"),
-		""
+		new RegExp('(^|\\s+)' + cls + '(\\s+|$)'),
+		''
 	)
 }
 function toggleClass(cls, el) {
@@ -159,31 +162,31 @@ function Tags(tag) {
 
 		function init() {
 			// create and add wrapper
-			wrap = create("div", {
-				className: "tags-container"
+			wrap = create('div', {
+				className: 'tags-container'
 			})
-			field = create("input", {
-				type: "text",
-				className: "tag-input",
-				placeholder: el.placeholder || ""
+			field = create('input', {
+				type: 'text',
+				className: 'tag-input',
+				placeholder: el.placeholder || ''
 			})
 
 			wrap.appendChild(field)
 
-			if (el.value.trim() !== "") {
+			if (el.value.trim() !== '') {
 				hasTags()
 			}
 
-			el.type = "hidden"
+			el.type = 'hidden'
 			el.parentNode.insertBefore(wrap, el.nextSibling)
 
-			wrap.addEventListener("click", btnRemove, false)
-			wrap.addEventListener("keydown", keyHandler, false)
-			wrap.addEventListener("keyup", backHandler, false)
+			wrap.addEventListener('click', btnRemove, false)
+			wrap.addEventListener('keydown', keyHandler, false)
+			wrap.addEventListener('keyup', backHandler, false)
 		}
 
 		function hasTags() {
-			var arr = el.value.trim().split(",")
+			var arr = el.value.trim().split(',')
 			arr.forEach(function(item) {
 				item = item.trim()
 				if (~tagsArray.indexOf(item)) {
@@ -196,12 +199,12 @@ function Tags(tag) {
 		}
 
 		function createTag(name) {
-			var tag = create("div", {
-				className: "tag",
+			var tag = create('div', {
+				className: 'tag',
 				innerHTML:
 					'<span class="tag__name">' +
 					name +
-					"</span>" +
+					'</span>' +
 					'<button class="tag__remove">&times;</button>'
 			})
 			return tag
@@ -209,26 +212,23 @@ function Tags(tag) {
 
 		function btnRemove(e) {
 			e.preventDefault()
-			if (e.target.className === "tag__remove") {
+			if (e.target.className === 'tag__remove') {
 				var tag = e.target.parentNode
-				var name = $(".tag__name", tag)
+				var name = $('.tag__name', tag)
 				wrap.removeChild(tag)
 				tagsArray.splice(tagsArray.indexOf(name.textContent), 1)
-				el.value = tagsArray.join(",")
+				el.value = tagsArray.join(',')
 			}
 			field.focus()
 		}
 
 		function keyHandler(e) {
-			if (
-				e.target.tagName === "INPUT" &&
-				e.target.className === "tag-input"
-			) {
+			if (e.target.tagName === 'INPUT' && e.target.className === 'tag-input') {
 				var target = e.target
 				var code = e.which || e.keyCode
 
 				if (field.previousSibling && code !== KEYS.BACK) {
-					removeClass("tag--marked", field.previousSibling)
+					removeClass('tag--marked', field.previousSibling)
 				}
 
 				var name = target.value.trim()
@@ -244,7 +244,7 @@ function Tags(tag) {
 						target.focus()
 					}, 10)
 				} else if (code === KEYS.BACK) {
-					if (e.target.value === "" && !isPressed) {
+					if (e.target.value === '' && !isPressed) {
 						isPressed = true
 						removeTag()
 					}
@@ -257,45 +257,48 @@ function Tags(tag) {
 
 		function addTag(name) {
 			// delete comma if comma exists
-			name = name.toString().replace(/,/g, "").trim()
+			name = name
+				.toString()
+				.replace(/,/g, '')
+				.trim()
 
-			if (name === "") return (field.value = "")
+			if (name === '') return (field.value = '')
 
 			if (~tagsArray.indexOf(name)) {
-				var exist = $$(".tag", wrap)
+				var exist = $$('.tag', wrap)
 
 				Array.prototype.forEach.call(exist, function(tag) {
 					if (tag.firstChild.textContent === name) {
-						addClass("tag--exists", tag)
+						addClass('tag--exists', tag)
 
 						if (transitionEnd) {
 							oneListener(tag, transitionEnd, function() {
-								removeClass("tag--exists", tag)
+								removeClass('tag--exists', tag)
 							})
 						} else {
-							removeClass("tag--exists", tag)
+							removeClass('tag--exists', tag)
 						}
 					}
 				})
 
-				return (field.value = "")
+				return (field.value = '')
 			}
 
 			var tag = createTag(name)
 			wrap.insertBefore(tag, field)
 			tagsArray.push(name)
-			field.value = ""
-			el.value += el.value === "" ? name : "," + name
+			field.value = ''
+			el.value += el.value === '' ? name : ',' + name
 		}
 
 		function removeTag() {
 			if (tagsArray.length === 0) return
 
-			var tags = $$(".tag", wrap)
+			var tags = $$('.tag', wrap)
 			var tag = tags[tags.length - 1]
 
-			if (!hasClass("tag--marked", tag)) {
-				addClass("tag--marked", tag)
+			if (!hasClass('tag--marked', tag)) {
+				addClass('tag--marked', tag)
 				return
 			}
 
@@ -303,7 +306,7 @@ function Tags(tag) {
 
 			wrap.removeChild(tag)
 
-			el.value = tagsArray.join(",")
+			el.value = tagsArray.join(',')
 		}
 
 		init()
@@ -317,8 +320,8 @@ function Tags(tag) {
 		this.clearTags = function() {
 			if (!el.instance) return
 			tagsArray.length = 0
-			el.value = ""
-			wrap.innerHTML = ""
+			el.value = ''
+			wrap.innerHTML = ''
 			wrap.appendChild(field)
 		}
 
@@ -337,9 +340,9 @@ function Tags(tag) {
 		this.destroy = function() {
 			if (!el.instance) return
 
-			wrap.removeEventListener("click", btnRemove, false)
-			wrap.removeEventListener("keydown", keyHandler, false)
-			wrap.removeEventListener("keyup", keyHandler, false)
+			wrap.removeEventListener('click', btnRemove, false)
+			wrap.removeEventListener('keydown', keyHandler, false)
+			wrap.removeEventListener('keyup', keyHandler, false)
 
 			wrap.parentNode.removeChild(wrap)
 
@@ -357,15 +360,15 @@ function Tags(tag) {
 window.Tags = Tags
 
 // Use
-var tags = new Tags(".tagged")
+var tags = new Tags('.tagged')
 
-if (this.textContent === "destroy") {
+if (this.textContent === 'destroy') {
 	tags.destroy()
-	this.textContent = "reinit"
+	this.textContent = 'reinit'
 } else {
-	this.textContent = "destroy"
-	tags = new Tags(".tagged")
+	this.textContent = 'destroy'
+	tags = new Tags('.tagged')
 }
-
 </script>
+  <!-- <script src="js/main.js"></script> -->
 </html>

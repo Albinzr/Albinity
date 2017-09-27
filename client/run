@@ -1,8 +1,7 @@
-cp -R build/css /var/www/html
-cp -R build/index.html /var/www/html
-cp -R build/js /var/www/html
-cp -R build/img /var/www/html
-cp -R build/json /var/www/html
-cp -R build/asset-manifest.json /var/www/html
-cp -R build/static /var/www/html
-
+sudo cp -R build/css /var/www/html
+sudo cp -R build/index.html /var/www/html
+sudo cp -R build/js /var/www/html
+sudo cp -R build/img /var/www/html
+sudo cp -R build/json /var/www/html
+sudo cp -R build/asset-manifest.json /var/www/html
+sudo cp -R build/static /var/www/html

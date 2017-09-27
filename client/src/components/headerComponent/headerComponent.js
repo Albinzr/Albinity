@@ -54,6 +54,25 @@ class App extends Component {
 			}
 		})
 	}
+	goToLink(linkType) {
+		switch (linkType) {
+			case 'facebook':
+				window.open('https://www.facebook.com/albincr.in/')
+				return false
+			case 'twitter':
+				window.open('https://twitter.com/albin_dev')
+				return false
+			case 'youtube':
+				window.open(
+					'https://www.youtube.com/channel/UCPn57zyOJgcjMFmpHF6oLqw/featured'
+				)
+				return false
+			case 'instagram':
+				window.open('https://www.instagram.com/albinzr')
+				return false
+			default:
+		}
+	}
 
 	render() {
 		let categories = this.state.categories.map((category, index) => {
@@ -89,10 +108,30 @@ class App extends Component {
 
 						<div className="social">
 							<ul>
-								<li className="fa fa-facebook" />
-								<li className="fa fa-twitter" />
-								<li className="fa fa-instagram" />
-								<li className="fa fa-youtube" />
+								<li
+									className="fa fa-facebook"
+									onClick={() => {
+										this.goToLink('facebook')
+									}}
+								/>
+								<li
+									className="fa fa-twitter"
+									onClick={() => {
+										this.goToLink('twitter')
+									}}
+								/>
+								<li
+									className="fa fa-instagram"
+									onClick={() => {
+										this.goToLink('instagram')
+									}}
+								/>
+								<li
+									className="fa fa-youtube"
+									onClick={() => {
+										this.goToLink('youtube')
+									}}
+								/>
 							</ul>
 						</div>
 
