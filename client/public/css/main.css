@@ -1330,6 +1330,10 @@ nav :-moz-placeholder {
   line-height: 1.58;
   color: rgba(0,0,0,0.8);
 }
+.detailed-post .post-share li {
+  line-height: 15px;
+  font-size: 24px !important;
+}
 .detailed-post h1,
 .detailed-post h2,
 .detailed-post h3,
@@ -1363,10 +1367,6 @@ nav :-moz-placeholder {
   display: block;
   padding-top: 25px;
   padding-bottom: 25px;
-}
-.post-share li {
-  line-height: 15px;
-  font-size: 24px !important;
 }
 .post-tag-container {
   width: 95%;
