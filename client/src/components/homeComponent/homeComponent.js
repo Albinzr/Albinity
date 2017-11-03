@@ -40,6 +40,18 @@ class App extends Component {
 				}
 				this.getPostByTag()
 				break
+			case 'category':
+				let categoryKey = this.props.match.params.slug
+				if (isNaN(offset)) {
+					offset = 0
+					let newOffset = offset + limit
+					this.props.history.replace(
+						'/category/' + categoryKey + '/' + newOffset
+					)
+					break
+				}
+				this.getPostByCategory()
+				break
 			case 'search':
 				let searchKey = this.props.match.params.slug
 				if (isNaN(offset)) {
@@ -72,6 +84,11 @@ class App extends Component {
 					let tagKey = this.props.match.params.slug
 					this.props.history.replace('/tag/' + tagKey + '/' + offset)
 					this.getPostByTag()
+					break
+				case 'category':
+					let categoryKey = this.props.match.params.slug
+					this.props.history.replace('/category/' + categoryKey + '/' + offset)
+					this.getPostByCategory()
 					break
 				case 'search':
 					let searchKey = this.props.match.params.slug
@@ -141,6 +158,55 @@ class App extends Component {
 
 		let url =
 			baseUrl + '/api/tag/' + tagKey + '?limit=' + limit + '&offset=' + offset
+		console.log(url)
+		$.ajax({
+			url: url,
+			type: 'GET',
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function(json) {
+				console.log(json)
+				if (this.state.posts.length == 0 && offset == 0) {
+					offset = limit
+					limit = 4
+				}
+
+				if (json.data.length < 4 || limit > json.data.length) {
+					this.setState({
+						loadMore: false
+					})
+				}
+				if (json.success) {
+					let currentPost = this.state.posts
+					let combineAllPost = currentPost.concat(json.data)
+					this.setState({
+						posts: combineAllPost
+					})
+				}
+			}.bind(this),
+			error: function(error) {
+				console.log('no network')
+			}
+		})
+	}
+
+	getPostByCategory() {
+		let categoryKey = this.props.match.params.slug
+		console.log(offset, 'urlOffset')
+		if (this.state.posts.length == 0 && offset != 0) {
+			limit = offset
+			offset = 0
+		}
+
+		let url =
+			baseUrl +
+			'/api/category/' +
+			categoryKey +
+			'?limit=' +
+			limit +
+			'&offset=' +
+			offset
 		console.log(url)
 		$.ajax({
 			url: url,
@@ -298,10 +364,17 @@ class App extends Component {
 						</div>
 
 						<div className="post-more-details">
+							<div className="post-continue-reading">
+								<ul>
+									<li>
+										<Link to={'/post/' + post.slug}>Continue Reading</Link>
+									</li>
+								</ul>
+							</div>
 							<div className="post-share">
 								<ul>
 									<li>
-										SHARE <span>|</span>
+										<span> SHARE |</span>
 									</li>
 									<li
 										className="fa fa-facebook"
@@ -321,21 +394,6 @@ class App extends Component {
 											this.share('whatsapp')
 										}}
 									/>
-								</ul>
-							</div>
-
-							<div className="post-continue-reading">
-								<ul>
-									<li>
-										<Link to={'/post/' + post.slug}>Continue Reading</Link>
-									</li>
-								</ul>
-							</div>
-							<div className="post-comments">
-								<ul>
-									<Link to={'/post/' + post.slug}>
-										<li>Comment</li>
-									</Link>
 								</ul>
 							</div>
 						</div>

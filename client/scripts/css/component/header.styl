@@ -34,6 +34,7 @@ nav
     float: left
 
 .header-menu
+    font-family: 'global';
     float: left;
     width 40%
     min-width: 265px
@@ -55,7 +56,7 @@ nav
             line-height: 80px
             cursor pointer
             span
-                font-family: 'merriweather-sans-light';
+                font-family: 'global';
                 letter-spacing: 0.33em;
                 font-weight: 400
                 height: 80px
@@ -76,15 +77,23 @@ nav
                     padding-right 30px
                     padding-top 15px
                     padding-bottom 15px
+                    -webkit-transition: display 2s ease-out;
                     li
-                        font-family: 'merriweather-sans-light'
-                        letter-spacing: 0.33em
-                        font-weight: 400
+
                         width calc((100% / 3))
                         margin 0 auto
                         line-height 1.6
                         text-align left
                         height 30px
+                        a
+                          font-family: 'global';
+                          text-decoration none
+                          color #838383
+                          letter-spacing: 0.33em
+                          font-weight: 400
+                          cursor pointer
+                          &:hover
+                            text-decoration:underline
 .social
     float: left;
     min-width: 85px
@@ -119,7 +128,6 @@ nav
         color: #838383;
         padding: 0 0 0 10px;
         margin-left 5px
-        font-family: 'merriweather-sans-bold';
-        letter-spacing: 0.33em;
+        font-family: 'global';
         font-size: 12px;
-        font-weight: 400;
+        letter-spacing: 0.33em

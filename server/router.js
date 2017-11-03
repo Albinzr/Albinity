@@ -28,6 +28,25 @@ var storage = multer.diskStorage({
 	}
 })
 
+const isAuthenticated = (req, res, next) => {
+	console.log('auth check', req.session.userId)
+	if (req.session.userId) {
+		console.log('session ok', req.session.userId)
+		return next()
+	} else {
+		console.log('session failled', req.session)
+		return res.json({
+			success: false,
+			error: 'you are not logged in.'
+		})
+	}
+}
+const loggedIn = (req, res) => {
+	return res.json({
+		success: true
+	})
+}
+
 var upload = multer({
 	storage: storage
 })
@@ -37,6 +56,7 @@ module.exports = function(app) {
 	app.post('/api/login', userController.login)
 	app.get('/api/logout', userController.logout)
 	app.post('/api/register', userController.register)
+	app.get('/api/user/status', isAuthenticated, loggedIn)
 
 	//NOTE - Create -
 	app.use('/uploads', express.static(__dirname + '/uploads'))
@@ -47,11 +67,11 @@ module.exports = function(app) {
 		uploadController.uploadBlogImages
 	)
 
-	app.post('/api/post', postController.createPost)
-	app.get('/api/post/:slug', postController.detailedPost)
 	app.get('/api/post', postController.displayPosts)
-	app.post('/api/post/update', postController.updatePost)
-	app.post('/api/post/delete', postController.deletePost)
+	app.get('/api/post/:slug', postController.detailedPost)
+	app.post('/api/post/new', isAuthenticated, postController.createPost)
+	app.post('/api/post/update', isAuthenticated, postController.updatePost)
+	app.post('/api/post/delete', isAuthenticated, postController.deletePost)
 
 	//NOTE - Tag
 	app.post('/api/tag', tagController.createTag)

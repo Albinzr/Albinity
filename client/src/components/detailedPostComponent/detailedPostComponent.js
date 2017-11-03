@@ -34,6 +34,7 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
+				console.log('auth check', json)
 				if (json.success) {
 					if (json.data != null) {
 						this.setState({
@@ -46,6 +47,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
+				console.log('auth check', error)
 				console.log('no network')
 			}
 		})

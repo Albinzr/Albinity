@@ -1,4 +1,4 @@
-import User from "../model/userModel"
+import User from '../model/userModel'
 
 const userController = {}
 
@@ -28,13 +28,13 @@ userController.register = (req, res) => {
 			if (error.code == 11000) {
 				return res.status(403).json({
 					success: false,
-					message: "Email already exists",
+					message: 'Email already exists',
 					error: error
 				})
 			} else {
 				return res.status(403).json({
 					success: false,
-					message: "Failed to register",
+					message: 'Failed to register',
 					error: error
 				})
 			}
@@ -46,7 +46,7 @@ userController.register = (req, res) => {
 userController.login = (req, res) => {
 	const { username, password } = req.body
 
-	console.log(username, password, "...........")
+	console.log(username, password, '...........')
 
 	User.findOne(
 		{
@@ -61,17 +61,17 @@ userController.login = (req, res) => {
 
 				return res.json({
 					success: true,
-					data: "logged in successfully"
+					data: 'logged in successfully'
 				})
 			} else {
 				return res.status(403).json({
 					success: false,
-					message: "User dose not exist",
+					message: 'User dose not exist',
 					error: error
 				})
 			}
 		}
-	).select("+password")
+	).select('+password')
 }
 
 //NOTE - logout -
@@ -82,13 +82,13 @@ userController.logout = (req, res) => {
 		if (error) {
 			return res.status(403).json({
 				success: false,
-				message: "User dose not exist",
+				message: 'User dose not exist',
 				error: error
 			})
 		} else {
 			return res.json({
 				success: true,
-				data: "logged out successfully"
+				data: 'logged out successfully'
 			})
 		}
 	})

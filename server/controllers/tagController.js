@@ -88,6 +88,7 @@ tagController.displayByTag = (req, res) => {
 						}
 					}
 				)
+					.sort({ publishedDate: -1 })
 					.populate('author')
 					.populate('tags')
 					.populate('category')

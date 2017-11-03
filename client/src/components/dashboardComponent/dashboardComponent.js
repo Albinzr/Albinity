@@ -211,7 +211,7 @@ class App extends Component {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: baseUrl + '/api/post',
+			url: baseUrl + '/api/post/new',
 			data: {
 				heading: heading,
 				subHeading: subHeading,
@@ -230,10 +230,12 @@ class App extends Component {
 					}
 				}.bind(this)
 			)
-			.fail(function(xhr, status, err) {
-				console.log(xhr, status, err)
-				this.alert(err.message)
-			})
+			.fail(
+				function(xhr, status, err) {
+					console.log(xhr, status, err)
+					this.alert('You are not logged in')
+				}.bind(this)
+			)
 	}
 
 	save() {

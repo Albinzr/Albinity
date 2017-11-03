@@ -1,12 +1,12 @@
-import Post from "../model/postModel"
-import textSearch from "mongoose-text-search"
-var mongoose = require("mongoose")
+import Post from '../model/postModel'
+import textSearch from 'mongoose-text-search'
+var mongoose = require('mongoose')
 
 const searchController = {}
 
 searchController.fuzzySearch = (req, res) => {
-	let offset = parseInt(req.param("offset"))
-	let limit = parseInt(req.param("limit"))
+	let offset = parseInt(req.param('offset'))
+	let limit = parseInt(req.param('limit'))
 
 	const query = req.params.key
 	console.log(offset, limit, typeof query)
@@ -18,12 +18,12 @@ searchController.fuzzySearch = (req, res) => {
 
 	Post.find(
 		searchTag,
-		"author tags category publishedDate mainImage heading subHeading slug",
+		'author tags category publishedDate mainImage heading subHeading slug',
 		(error, searchResult) => {
 			if (error != null) {
 				return res.json({
 					success: false,
-					message: "Failed to register",
+					message: 'Failed to register',
 					error: error
 				})
 			} else {
@@ -34,9 +34,10 @@ searchController.fuzzySearch = (req, res) => {
 			}
 		}
 	)
-		.populate("author")
-		.populate("tags")
-		.populate("category")
+		.sort({ publishedDate: -1 })
+		.populate('author')
+		.populate('tags')
+		.populate('category')
 		.skip(offset)
 		.limit(limit)
 }

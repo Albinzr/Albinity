@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import $ from 'jquery'
 import { baseUrl } from '../../helper/common'
 
@@ -76,7 +77,11 @@ class App extends Component {
 
 	render() {
 		let categories = this.state.categories.map((category, index) => {
-			return <li key={index}>{category.name}</li>
+			return (
+				<li key={index}>
+					<Link to={'/category/' + category.name}>{category.name}</Link>
+				</li>
+			)
 		})
 		return (
 			<nav>

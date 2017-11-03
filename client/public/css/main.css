@@ -195,6 +195,12 @@ button:disabled {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'global';
+  src: url("./fonts/proxima-nova.woff2") format('woff2'), url("./fonts/proxima-nova.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 .post-header {
   width: 100%;
   padding: 25px 0 18px;
@@ -327,9 +333,10 @@ button:disabled {
   color: #c0bcbc;
   padding: 7px 33px;
   display: block;
+  -webkit-transition: background-color 1s ease-out;
 }
 .post-container .post-continue-reading li a:hover {
-  background-color: #000;
+  background-color: rgba(0,0,0,0.63);
   color: #fff;
 }
 .post-container .post-comments {
@@ -369,10 +376,11 @@ button:disabled {
   font-weight: 400;
   margin: 0 auto;
   margin-top: 40px;
+  -webkit-transition: background-color 1s ease-out;
   text-transform: uppercase;
 }
 .load-more-continer .load-more:hover {
-  background-color: #000;
+  background-color: rgba(0,0,0,0.63);
   color: #fff;
 }
 .dashboard-container {
@@ -1140,6 +1148,7 @@ nav :-moz-placeholder {
   float: left;
 }
 .header-menu {
+  font-family: 'global';
   float: left;
   width: 40%;
   min-width: 265px;
@@ -1163,7 +1172,7 @@ nav :-moz-placeholder {
   cursor: pointer;
 }
 .header-menu ul li span {
-  font-family: 'merriweather-sans-light';
+  font-family: 'global';
   letter-spacing: 0.33em;
   font-weight: 400;
   height: 80px;
@@ -1186,16 +1195,25 @@ nav :-moz-placeholder {
   padding-right: 30px;
   padding-top: 15px;
   padding-bottom: 15px;
+  -webkit-transition: display 2s ease-out;
 }
 .header-menu ul li .category-menu ul li {
-  font-family: 'merriweather-sans-light';
-  letter-spacing: 0.33em;
-  font-weight: 400;
   width: calc((100% / 3));
   margin: 0 auto;
   line-height: 1.6;
   text-align: left;
   height: 30px;
+}
+.header-menu ul li .category-menu ul li a {
+  font-family: 'global';
+  text-decoration: none;
+  color: #838383;
+  letter-spacing: 0.33em;
+  font-weight: 400;
+  cursor: pointer;
+}
+.header-menu ul li .category-menu ul li a:hover {
+  text-decoration: underline;
 }
 .social {
   float: left;
@@ -1235,10 +1253,9 @@ nav :-moz-placeholder {
   color: #838383;
   padding: 0 0 0 10px;
   margin-left: 5px;
-  font-family: 'merriweather-sans-bold';
-  letter-spacing: 0.33em;
+  font-family: 'global';
   font-size: 12px;
-  font-weight: 400;
+  letter-spacing: 0.33em;
 }
 .footer {
   float: left;
@@ -1256,7 +1273,7 @@ nav :-moz-placeholder {
   width: 95%;
   height: 80px;
   margin: 0 auto;
-  font-family: 'merriweather-sans-light';
+  font-family: 'global';
 }
 .footer .social-footer ul li {
   text-align: center;
@@ -1271,6 +1288,7 @@ nav :-moz-placeholder {
   color: #000;
 }
 .footer .social-footer ul li span {
+  font-family: 'global';
   padding-left: 5px;
 }
 .footer .info-footer {
@@ -1287,7 +1305,7 @@ nav :-moz-placeholder {
   width: 20%;
   min-width: 150px;
   padding: 55px 0;
-  font-family: 'merriweather-sans-light';
+  font-family: 'global';
 }
 .footer .info-footer .aboutme-footer {
   float: left;
@@ -1300,7 +1318,7 @@ nav :-moz-placeholder {
   max-width: 360px;
   display: block;
   padding: 55px 0;
-  font-family: 'merriweather-sans-light';
+  font-family: 'global';
   text-align: justify;
 }
 .footer .info-footer .other-info-footer {
@@ -1312,7 +1330,7 @@ nav :-moz-placeholder {
   margin: 0 0 10px 0;
   padding: 0;
   text-transform: uppercase;
-  font-family: 'merriweather-sans-light';
+  font-family: 'global';
   font-size: 12px;
   letter-spacing: 0.3em;
   line-height: 1;
@@ -1329,6 +1347,10 @@ nav :-moz-placeholder {
   font-family: 'merriweather-light';
   line-height: 1.58;
   color: rgba(0,0,0,0.8);
+}
+.detailed-post .post-share {
+  padding: 0 !important;
+  margin-top: 30px;
 }
 .detailed-post .post-share li {
   line-height: 15px;
@@ -1395,9 +1417,10 @@ nav :-moz-placeholder {
   cursor: pointer;
   border-radius: 20px;
   font-size: 15px;
+  -webkit-transition: background-color 1s ease-out;
 }
 .post-tag-container ul li a:hover {
-  background-color: #000;
+  background-color: rgba(0,0,0,0.63);
   color: #fff;
 }
 .post-comment-container {
