@@ -62,7 +62,7 @@ export const unorderedListStrategy = state => {
 
   if (isUnorderedList(state)) return deepRemoveList(state).apply()
   if (isOrderedList(state)) return switchToUnorderedList(transform).apply()
-  console.info('[SlateJS][ListPlugin] It is a different type of list.'); return state
+  //console.info('[SlateJS][ListPlugin] It is a different type of list.'); return state
 }
 
 export const orderedListStrategy = state => {
@@ -74,7 +74,7 @@ export const orderedListStrategy = state => {
   // If it is already a list, handle it!
   if (isOrderedList(state)) return deepRemoveList(state).apply()
   else if (isUnorderedList(state)) return switchToOrderedList(transform).apply()
-  else console.info('[SlateJS][ListPlugin] It is a different type of list.'); return state
+  else //console.info('[SlateJS][ListPlugin] It is a different type of list.'); return state
 }
 
 export const increaseListDepthStrategy = state => {

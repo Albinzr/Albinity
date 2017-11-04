@@ -34,14 +34,14 @@ export const fontFamilyMarkStrategy = attributes => {
     if (state.isExpanded) {
       return reapplyMark(attributes)
     }
-    else console.info('[SlateJS][FontFamilyPlugin] selection collapsed, w/ mark exists')
+    else //console.info('[SlateJS][FontFamilyPlugin] selection collapsed, w/ mark exists')
   }
 
   else {
     if (state.isExpanded) {
       return applyMark(attributes)
     }
-    else console.info('[SlateJS][FontFamilyPlugin] selection collapsed, w/o mark')
+    else //console.info('[SlateJS][FontFamilyPlugin] selection collapsed, w/o mark')
   }
 
   return state

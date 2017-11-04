@@ -83,7 +83,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('no network')
+				//console.log('no network')
 			}
 		})
 	}
@@ -141,7 +141,7 @@ class App extends Component {
 					}.bind(this)
 				)
 				.fail(function(xhr, status, err) {
-					console.log(err, xhr, status)
+					//console.log(err, xhr, status)
 				})
 		})
 		inputTag.click()
@@ -226,13 +226,13 @@ class App extends Component {
 			.done(
 				function(data, status, xhr) {
 					if (data.success) {
-						console.log('uploaded')
+						//console.log('uploaded')
 					}
 				}.bind(this)
 			)
 			.fail(
 				function(xhr, status, err) {
-					console.log(xhr, status, err)
+					//console.log(xhr, status, err)
 					this.alert('You are not logged in')
 				}.bind(this)
 			)

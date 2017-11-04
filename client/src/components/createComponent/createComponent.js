@@ -29,7 +29,7 @@
 //
 // 		// (this.state).forEach((item) => {
 // 		//
-// 		//       console.log(item)
+// 		//       //console.log(item)
 // 		//
 // 		// })
 //
@@ -55,10 +55,10 @@
 // 			data: formData
 // 		})
 // 			.done(function(data, status, xhr) {
-// 				console.log(data, status, xhr);
+// 				//console.log(data, status, xhr);
 // 			})
 // 			.fail(function(xhr, status, err) {
-// 				console.log(err, xhr, status);
+// 				//console.log(err, xhr, status);
 // 			});
 // 	}
 //
@@ -72,7 +72,7 @@
 // 				break;
 //
 // 			case "type":
-// 				console.log(event.target);
+// 				//console.log(event.target);
 // 				this.setState({ type: value });
 // 				break;
 //

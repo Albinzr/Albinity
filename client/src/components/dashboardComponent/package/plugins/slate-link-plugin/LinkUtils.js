@@ -64,10 +64,10 @@ export const insertLinkStrategy = state => {
     }
   }
   else if (hasMultiBlocks(state)) {
-    console.info('[SlateJS][LinkPlugin] has multiple blocks on selection')
+    //console.info('[SlateJS][LinkPlugin] has multiple blocks on selection')
   }
   else if (state.isCollapsed && !hasLinks(state)) {
-    console.info('[SlateJS][LinkPlugin] selection collapsed, w/o links on selection')
+    //console.info('[SlateJS][LinkPlugin] selection collapsed, w/o links on selection')
   }
 
   return transform.apply()

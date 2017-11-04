@@ -20,12 +20,12 @@ class App extends Component {
 
 	componentDidMount() {
 		this.getPost()
-		console.log(document, 'ref details')
+		//console.log(document, 'ref details')
 	}
 
 	getPost() {
 		let slug = this.props.match.params.slug
-		console.log(this.props)
+		//console.log(this.props)
 		let url = baseUrl + '/api/post/' + slug
 		$.ajax({
 			url: url,
@@ -34,7 +34,7 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				console.log('auth check', json)
+				//console.log('auth check', json)
 				if (json.success) {
 					if (json.data != null) {
 						this.setState({
@@ -47,8 +47,8 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('auth check', error)
-				console.log('no network')
+				//console.log('auth check', error)
+				//console.log('no network')
 			}
 		})
 	}

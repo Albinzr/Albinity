@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import routes from './router/router.js'
-import { BrowserRouter as Router } from 'react-router-dom'
+import Routes from './router/router.js'
 import '../public/css/main.css'
 import '../public/js/main.js'
 
-const Routes = <Router>{routes}</Router>
+const App = () => <Routes />
 
-const app = document.getElementById('root')
+const root = document.getElementById('root')
 
-ReactDOM.render(Routes, app)
+ReactDOM.render(<App />, root)

@@ -15,6 +15,7 @@ class App extends Component {
 
 		this.setFormData = this.setFormData.bind(this)
 		this.login = this.login.bind(this)
+
 	}
 
 	login(event) {
@@ -35,15 +36,17 @@ class App extends Component {
 		})
 			.done(
 				function(data, status, xhr) {
-					console.log(data)
+					//console.log(data)
 					if (data.success) {
 						this.setState({ redirect: true })
+					}else{
+						this.setState({ redirect: false })
 					}
 				}.bind(this)
 			)
 			.fail(function(xhr, status, err) {
-				console.log(err)
-			})
+					this.setState({ redirect: false })
+			}.bind(this))
 	}
 
 	setFormData(event) {
@@ -64,9 +67,15 @@ class App extends Component {
 		}
 	}
 
-	render() {
-		if (this.state.redirect) return <Redirect to={{ pathname: '/dashboard' }} />
 
+	render() {
+console.log("renderes")
+		const { redirect } = this.state;
+
+		if (redirect) {
+			window.location.replace(window.location.origin + "/dashboard");
+
+		}
 		return (
 			<div>
 				<form onSubmit={this.login}>

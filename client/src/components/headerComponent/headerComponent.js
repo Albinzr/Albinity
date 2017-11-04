@@ -28,7 +28,7 @@ class App extends Component {
 		}
 	}
 	hideCategoryMenu(event) {
-		console.log('kkkkkk')
+		//console.log('kkkkkk')
 		var element = document.body.getElementsByClassName('category-menu')
 		if (element[0] != null) {
 			element[0].style.display = 'none'
@@ -51,7 +51,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('no network')
+				//console.log('no network')
 			}
 		})
 	}

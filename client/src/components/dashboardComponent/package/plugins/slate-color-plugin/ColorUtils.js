@@ -45,14 +45,14 @@ export const colorMarkStrategy = attributes => {
     if (state.isExpanded) {
       return reapplyMark(attributes)
     }
-    else console.info('[SlateJS][ColorPlugin] selection collapsed, w/ mark exists')
+    else //console.info('[SlateJS][ColorPlugin] selection collapsed, w/ mark exists')
   }
 
   else {
     if (state.isExpanded) {
       return applyMark(attributes)
     }
-    else console.info('[SlateJS][ColorPlugin] selection collapsed, w/o mark')
+    else //console.info('[SlateJS][ColorPlugin] selection collapsed, w/o mark')
   }
 
   return state

@@ -6,7 +6,7 @@ let limit = 4
 let offset = 0
 class App extends Component {
 	constructor(props) {
-		console.log('constructor')
+		//console.log('constructor')
 		super(props)
 		this.state = {
 			posts: [],
@@ -17,7 +17,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log('didMound', this.state.posts, this.props.location.action)
+		//console.log('didMound', this.state.posts, this.props.location.action)
 		offset = parseInt(this.props.match.params.offset)
 
 		switch (this.props.pageKey) {
@@ -73,7 +73,7 @@ class App extends Component {
 		if (this.state.loadMore) {
 			offset = offset + limit
 
-			console.log(offset, 'current offset', offset, 'newoffset')
+			//console.log(offset, 'current offset', offset, 'newoffset')
 
 			switch (this.props.pageKey) {
 				case 'home':
@@ -115,7 +115,7 @@ class App extends Component {
 			limit +
 			'&offset=' +
 			offset
-		console.log(url)
+		//console.log(url)
 		$.ajax({
 			url: url,
 			type: 'GET',
@@ -123,7 +123,7 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				console.log(json)
+				//console.log(json)
 				if (this.state.posts.length == 0 && offset == 0) {
 					offset = limit
 					limit = 4
@@ -143,14 +143,14 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('no network')
+				//console.log('no network')
 			}
 		})
 	}
 
 	getPostByTag() {
 		let tagKey = this.props.match.params.slug
-		console.log(offset, 'urlOffset')
+		//console.log(offset, 'urlOffset')
 		if (this.state.posts.length == 0 && offset != 0) {
 			limit = offset
 			offset = 0
@@ -158,7 +158,7 @@ class App extends Component {
 
 		let url =
 			baseUrl + '/api/tag/' + tagKey + '?limit=' + limit + '&offset=' + offset
-		console.log(url)
+		//console.log(url)
 		$.ajax({
 			url: url,
 			type: 'GET',
@@ -166,7 +166,7 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				console.log(json)
+				//console.log(json)
 				if (this.state.posts.length == 0 && offset == 0) {
 					offset = limit
 					limit = 4
@@ -186,14 +186,14 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('no network')
+				//console.log('no network')
 			}
 		})
 	}
 
 	getPostByCategory() {
 		let categoryKey = this.props.match.params.slug
-		console.log(offset, 'urlOffset')
+		//console.log(offset, 'urlOffset')
 		if (this.state.posts.length == 0 && offset != 0) {
 			limit = offset
 			offset = 0
@@ -207,7 +207,7 @@ class App extends Component {
 			limit +
 			'&offset=' +
 			offset
-		console.log(url)
+		//console.log(url)
 		$.ajax({
 			url: url,
 			type: 'GET',
@@ -215,7 +215,7 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				console.log(json)
+				//console.log(json)
 				if (this.state.posts.length == 0 && offset == 0) {
 					offset = limit
 					limit = 4
@@ -235,12 +235,12 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('no network')
+				//console.log('no network')
 			}
 		})
 	}
 	getPosts() {
-		console.log(offset, 'urlOffset')
+		//console.log(offset, 'urlOffset')
 		if (this.state.posts.length == 0 && offset != 0) {
 			limit = offset
 			offset = 0
@@ -254,7 +254,7 @@ class App extends Component {
 				withCredentials: true
 			},
 			success: function(json) {
-				console.log(json)
+				//console.log(json)
 				if (this.state.posts.length == 0 && offset == 0) {
 					offset = limit
 					limit = 4
@@ -274,7 +274,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('no network')
+				//console.log('no network')
 			}
 		})
 	}

@@ -55,7 +55,7 @@ class App extends Component {
 				}
 			}.bind(this),
 			error: function(error) {
-				console.log('no network')
+				//console.log('no network')
 			}
 		})
 	}

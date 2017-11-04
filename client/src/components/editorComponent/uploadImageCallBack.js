@@ -9,7 +9,7 @@ export default function uploadImageCallBack(file) {
       xhr.send(data);
       xhr.addEventListener('load', () => {
         const response = JSON.parse(xhr.responseText);
-        console.log(response);
+        //console.log(response);
         resolve(response);
       });
       xhr.addEventListener('error', () => {
