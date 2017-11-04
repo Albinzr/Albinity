@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import ReactQuill from 'react-quill'
+import { Link } from 'react-router-dom'
+
 import QuillDeltaToHtmlConverter from 'quill-delta-to-html'
 import FacebookProvider, { Comments } from 'react-facebook'
 import { baseUrl } from '../../helper/common'
@@ -92,8 +92,7 @@ class App extends Component {
 
 	getHtmlFromPostContext(context) {
 		if (context != null) {
-			let content = JSON.parse(context)
-			return context
+			return JSON.parse(context)
 		} else {
 			return 'null'
 		}

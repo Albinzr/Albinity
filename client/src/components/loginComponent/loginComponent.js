@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { baseUrl } from '../../helper/common'
 
 class App extends Component {
@@ -15,7 +15,6 @@ class App extends Component {
 
 		this.setFormData = this.setFormData.bind(this)
 		this.login = this.login.bind(this)
-
 	}
 
 	login(event) {
@@ -39,14 +38,16 @@ class App extends Component {
 					//console.log(data)
 					if (data.success) {
 						this.setState({ redirect: true })
-					}else{
+					} else {
 						this.setState({ redirect: false })
 					}
 				}.bind(this)
 			)
-			.fail(function(xhr, status, err) {
+			.fail(
+				function(xhr, status, err) {
 					this.setState({ redirect: false })
-			}.bind(this))
+				}.bind(this)
+			)
 	}
 
 	setFormData(event) {
@@ -67,14 +68,12 @@ class App extends Component {
 		}
 	}
 
-
 	render() {
-console.log("renderes")
-		const { redirect } = this.state;
+		console.log('renderes')
+		const { redirect } = this.state
 
 		if (redirect) {
-			window.location.replace(window.location.origin + "/dashboard");
-
+			window.location.replace(window.location.origin + '/apj/dashboard')
 		}
 		return (
 			<div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { baseUrl } from '../../helper/common'
 let limit = 4
 let offset = 0
@@ -71,9 +71,7 @@ class App extends Component {
 
 	loadMore() {
 		if (this.state.loadMore) {
-			offset = offset + limit
-
-			//console.log(offset, 'current offset', offset, 'newoffset')
+			offset += limit
 
 			switch (this.props.pageKey) {
 				case 'home':
@@ -103,7 +101,7 @@ class App extends Component {
 
 	getSearchResults() {
 		let searchKey = this.props.match.params.slug
-		if (this.state.posts.length == 0 && offset != 0) {
+		if (this.state.posts.length === 0 && offset !== 0) {
 			limit = offset
 			offset = 0
 		}
@@ -124,7 +122,7 @@ class App extends Component {
 			},
 			success: function(json) {
 				//console.log(json)
-				if (this.state.posts.length == 0 && offset == 0) {
+				if (this.state.posts.length === 0 && offset === 0) {
 					offset = limit
 					limit = 4
 				}
@@ -151,7 +149,7 @@ class App extends Component {
 	getPostByTag() {
 		let tagKey = this.props.match.params.slug
 		//console.log(offset, 'urlOffset')
-		if (this.state.posts.length == 0 && offset != 0) {
+		if (this.state.posts.length === 0 && offset !== 0) {
 			limit = offset
 			offset = 0
 		}
@@ -167,7 +165,7 @@ class App extends Component {
 			},
 			success: function(json) {
 				//console.log(json)
-				if (this.state.posts.length == 0 && offset == 0) {
+				if (this.state.posts.length === 0 && offset === 0) {
 					offset = limit
 					limit = 4
 				}
@@ -194,7 +192,7 @@ class App extends Component {
 	getPostByCategory() {
 		let categoryKey = this.props.match.params.slug
 		//console.log(offset, 'urlOffset')
-		if (this.state.posts.length == 0 && offset != 0) {
+		if (this.state.posts.length === 0 && offset !== 0) {
 			limit = offset
 			offset = 0
 		}
@@ -216,7 +214,7 @@ class App extends Component {
 			},
 			success: function(json) {
 				//console.log(json)
-				if (this.state.posts.length == 0 && offset == 0) {
+				if (this.state.posts.length === 0 && offset === 0) {
 					offset = limit
 					limit = 4
 				}
@@ -241,7 +239,7 @@ class App extends Component {
 	}
 	getPosts() {
 		//console.log(offset, 'urlOffset')
-		if (this.state.posts.length == 0 && offset != 0) {
+		if (this.state.posts.length === 0 && offset !== 0) {
 			limit = offset
 			offset = 0
 		}
@@ -255,7 +253,7 @@ class App extends Component {
 			},
 			success: function(json) {
 				//console.log(json)
-				if (this.state.posts.length == 0 && offset == 0) {
+				if (this.state.posts.length === 0 && offset === 0) {
 					offset = limit
 					limit = 4
 				}
@@ -355,7 +353,7 @@ class App extends Component {
 					<div className="post-container">
 						<div className="post-media">
 							<Link to={'/post/' + post.slug}>
-								<img src={post.mainImage} />
+								<img src={post.mainImage} alt="post" />
 							</Link>
 						</div>
 

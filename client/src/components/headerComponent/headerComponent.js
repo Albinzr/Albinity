@@ -16,7 +16,7 @@ class App extends Component {
 	}
 
 	search(event) {
-		if (event.key == 'Enter') {
+		if (event.key === 'Enter') {
 			var baseUrl = window.location.origin
 			return (window.location = baseUrl + '/search/' + event.target.value)
 		}
@@ -84,7 +84,7 @@ class App extends Component {
 			)
 		})
 		return (
-			<nav>
+			<nav className="header-container">
 				<div className="navbar">
 					<div className="inner-navbar">
 						<div className="logo">
@@ -102,11 +102,11 @@ class App extends Component {
 										<ul style={{ display: 'block' }}>{categories}</ul>
 									</div>
 								</li>
+						
 								<li>
-									<span>About</span>
-								</li>
-								<li>
-									<span>Contact</span>
+									<span>
+										<Link to={'/contact'}>Contact</Link>
+									</span>
 								</li>
 							</ul>
 						</div>

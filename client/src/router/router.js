@@ -3,20 +3,20 @@ import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
-	Redirect,
-	IndexRoute
+	Redirect
 } from 'react-router-dom'
 import history from './history.js'
 import $ from 'jquery'
 
 import { baseUrl } from '../helper/common'
 import Home from '../components/homeComponent/homeComponent.js'
-import Search from '../components/searchComponent/searchComponent.js'
 import Login from '../components/loginComponent/loginComponent.js'
 import Dashboard from '../components/dashboardComponent/dashboardComponent.js'
 import Header from '../components/headerComponent/headerComponent.js'
 import Footer from '../components/footerComponent/footerComponent.js'
 import DetailedPost from '../components/detailedPostComponent/detailedPostComponent.js'
+import Contact from '../components/contactComponent/contactComponent'
+
 const NoMatch = ({ location }) => (
 	<div>
 		<h3>
@@ -24,23 +24,6 @@ const NoMatch = ({ location }) => (
 		</h3>
 	</div>
 )
-
-const AuthRoute = ({ component: Component, ...rest }) => {
-	/*//console.log(this.props, 'yops')*/
-	const status = true
-
-	return (
-		<Route
-			{...rest}
-			render={props =>
-				status ? (
-					<Component {...props} />
-				) : (
-					<Redirect to={{ pathname: '/login' }} />
-				)}
-		/>
-	)
-}
 
 class App extends Component {
 	constructor(props) {
@@ -125,20 +108,24 @@ class App extends Component {
 							exact
 							component={props => <Home {...props} pageKey="category" />}
 						/>
-						<Route path="/login" exact component={Login} />
+
+						<Route path="/contact" exact component={Contact} />
+
+						<Route path="/apj/login" exact component={Login} />
+
 						<Route path="/post/:slug" exact component={DetailedPost} />
 
 						<Route
-							path="/dashboard"
+							path="/apj/dashboard"
 							render={() => {
-								if (this.state.isAuthenticated == 'loading') {
+								if (this.state.isAuthenticated === 'loading') {
 									console.log('in in')
 									return <div />
 								} else if (this.state.isAuthenticated) {
 									console.log('in out')
 									return <Dashboard />
 								} else {
-									return <Redirect to={{ pathname: '/login' }} />
+									return <Redirect to={{ pathname: '/apj/login' }} />
 								}
 							}}
 						/>
@@ -151,22 +138,4 @@ class App extends Component {
 		)
 	}
 }
-
-/*<Route path="/login" exact component={Login} props={this.props} />
-<Route path="/post/:slug" exact component={DetailedPost} />
-<Switch>
-	<Route
-		path="/dashboard"
-		render={() => {
-			if (this.state.isAuthenticated == 'loading') {
-				//console.log('in in')
-				return <div />
-			} else if (this.state.isAuthenticated) {
-				//console.log('in out')
-				return <Dashboard />
-			} else {
-				return <Login />
-			}
-		}}
-	/>*/
 export default App

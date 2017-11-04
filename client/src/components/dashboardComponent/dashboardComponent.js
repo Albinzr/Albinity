@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import ReactQuill from 'react-quill'
-import ReactDOM from 'react-dom'
 import $ from 'jquery'
 import { baseUrl } from '../../helper/common'
 
-import ReactToastr, { ToastContainer } from 'react-toastr'
+import { ToastContainer } from 'react-toastr'
 
 class App extends Component {
 	constructor(props) {
@@ -95,11 +94,11 @@ class App extends Component {
 	}
 
 	getFirstImageFromHtml(delta) {
-		if (delta == null || delta == undefined || delta == '') {
+		if (delta === null || delta === undefined || delta === '') {
 			return
 		}
 		for (let value of delta.ops) {
-			if (value.insert.image != undefined || value.insert.image != null) {
+			if (value.insert.image !== undefined || value.insert.image !== null) {
 				return value.insert.image
 			}
 		}
@@ -165,10 +164,10 @@ class App extends Component {
 
 	createTagArray(tagsString, errorMessage) {
 		if (
-			tagsString == null ||
-			tagsString == undefined ||
-			tagsString == '' ||
-			tagsString.count == 0
+			tagsString === null ||
+			tagsString === undefined ||
+			tagsString === '' ||
+			tagsString.count === 0
 		) {
 			this.alert(errorMessage)
 			return false
@@ -177,10 +176,10 @@ class App extends Component {
 	}
 	createCategory(categoryString, errorMessage) {
 		if (
-			categoryString == null ||
-			categoryString == undefined ||
-			categoryString == '' ||
-			categoryString.count == 0
+			categoryString === null ||
+			categoryString === undefined ||
+			categoryString === '' ||
+			categoryString.count === 0
 		) {
 			this.alert(errorMessage)
 			return false
@@ -197,7 +196,7 @@ class App extends Component {
 		})
 	}
 	validationCheckForString(data, errorMessage) {
-		if (data == null || data == undefined || data == '') {
+		if (data === null || data === undefined || data === '') {
 			this.alert(errorMessage)
 			return false
 		} else {
@@ -226,7 +225,7 @@ class App extends Component {
 			.done(
 				function(data, status, xhr) {
 					if (data.success) {
-						//console.log('uploaded')
+						this.alert('Posted successfully')
 					}
 				}.bind(this)
 			)
