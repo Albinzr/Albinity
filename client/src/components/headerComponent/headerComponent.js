@@ -43,14 +43,14 @@ class App extends Component {
 			xhrFields: {
 				withCredentials: true
 			},
-			success: function(json) {
+			success: function (json) {
 				if (json.success) {
 					this.setState({
 						categories: json.data
 					})
 				}
 			}.bind(this),
-			error: function(error) {
+			error: function (error) {
 				//console.log('no network')
 			}
 		})
@@ -88,7 +88,7 @@ class App extends Component {
 				<div className="navbar">
 					<div className="inner-navbar">
 						<div className="logo">
-							<img />
+							<img src={require("../../../public/img/logo.svg")} />
 						</div>
 
 						<div className="header-menu">
@@ -102,7 +102,7 @@ class App extends Component {
 										<ul style={{ display: 'block' }}>{categories}</ul>
 									</div>
 								</li>
-						
+
 								<li>
 									<span>
 										<Link to={'/contact'}>Contact</Link>

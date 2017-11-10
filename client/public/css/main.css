@@ -1133,6 +1133,10 @@ select {
   height: 80px;
   float: left;
 }
+.logo img {
+  height: 60px;
+  margin-top: 10px;
+}
 .header-menu {
   font-family: 'global';
   float: left;

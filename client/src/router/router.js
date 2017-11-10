@@ -19,9 +19,17 @@ import Contact from '../components/contactComponent/contactComponent'
 
 const NoMatch = ({ location }) => (
 	<div>
-		<h3>
-			No match for <code>{location.pathname}</code>
-		</h3>
+		<h1>404</h1>
+
+		<div className="frame">
+			<div />
+			<div />
+			<div />
+		</div>
+		<div className="caps">
+			<img src="http://ademilter.com/caps.png" alt="" />
+		</div>
+		<canvas id="canvas" />
 	</div>
 )
 
