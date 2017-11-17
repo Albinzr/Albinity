@@ -1,6 +1,7 @@
 import express from "express"
 import mongoose from "mongoose"
 
+
 const db = mongoose.connection
 
 // NOTE - user import
