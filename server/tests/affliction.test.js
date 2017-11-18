@@ -7,16 +7,21 @@ import app from '../server.js'
 describe(' GET /api/post', () => {
 
   it('shoild return all afflication details ', (done) => {
+    console.log("step 1")
     request(app)
       .get('/api/post')
       .expect(200)
       .expect((res) => {
+        console.log("step 2")
         expect(res.body.success).toBe(true);
       })
       .end((err, res) => {
+        console.log("step 3")
         if (err) {
+          console.log("step 4")
           return done(err)
         }
+        console.log("step 5")
         done()
       })
 
