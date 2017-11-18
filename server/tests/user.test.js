@@ -10,28 +10,6 @@ it('init User Test', () => {
   expect(start).toBe("Start").toBeA('string')
 });
 
-//NOTE - Login Test
-describe('POST /api/login', () => {
-  it('should login user', (done) => {
-    request(app)
-      .post('/api/login')
-      .send({
-        username: "acr",
-        password: "acracracr"
-      })
-      .expect(200)
-      .expect((res) => {
-        expect(res.body.success).toBe(true);
-      })
-      .end((err, res) => {
-        if (err) {
-          return done(err, res.body);
-        }
-        done();
-      });
-  })
-});
-
 describe('POST /api/login', () => {
   it('should fail login', (done) => {
     request(app)
@@ -53,10 +31,10 @@ describe('POST /api/login', () => {
   })
 });
 
-//NOTE - Register Test
+// NOTE - Register Test
 describe('POST /api/resister', () => {
   let email = Math.random().toString(36).substring(7) + "@gmail.com"
-  let username = Math.random().toString(36).substring(1)
+  let username = "acr"
   let password = Math.random().toString(36).substring(1)
   let phoneNo = Math.floor(Math.random() * 10000000000);
   it('Create a new user', (done) => {
@@ -99,11 +77,11 @@ describe('POST /api/resister', () => {
       .expect((res) => {
         expect(res.body.success).toBe(false)
       }).end((err, res) => {
-      if (err) {
-        return done(err)
-      }
-      done()
-    })
+        if (err) {
+          return done(err)
+        }
+        done()
+      })
   })
 })
 

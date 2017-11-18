@@ -4,11 +4,11 @@ import request from 'supertest'
 
 import app from '../server.js'
 
-describe(' GET /api/display', () => {
+describe(' GET /api/post', () => {
 
   it('shoild return all afflication details ', (done) => {
     request(app)
-      .get('/api/display')
+      .get('/api/post')
       .expect(200)
       .expect((res) => {
         expect(res.body.success).toBe(true);
@@ -23,11 +23,11 @@ describe(' GET /api/display', () => {
   })
 })
 
-describe(' GET /api/display', () => {
+describe(' GET /api/post', () => {
 
   it('shoild return afflication with limit and offset ', (done) => {
     request(app)
-      .get('/api/display?limit=1&offset=1')
+      .get('/api/post?limit=1&offset=1')
       .expect(200)
       .expect((res) => {
 
