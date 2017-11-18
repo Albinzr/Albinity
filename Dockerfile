@@ -4,7 +4,6 @@ WORKDIR /app
 
 RUN npm install nodemon -g
 
-
 COPY package.json /app/package.json
 COPY routes /app/routes
 COPY views /app/views
