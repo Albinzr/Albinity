@@ -18,7 +18,7 @@ describe('POST /api/login', () => {
         username: "qwdwqd",
         password: "2ewqdq"
       })
-      .expect(403)
+      .expect(200)
       .expect((res) => {
         expect(res.body.success).toBe(false);
       })
