@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: install awscli
-          command:  sudo apt-apt-repository ppa:fkrull/deadsnakes && sudo apt-get update && sudo apt-get install python2.7 pip install awscli --upgrade --user 
+          command:  curl -O https://bootstrap.pypa.io/get-pip.py && pip install awscli --upgrade --user 
       - run:
           name: Running server build
           command: cd server && ls &&  yarn install  
