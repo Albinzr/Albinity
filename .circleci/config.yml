@@ -11,10 +11,10 @@ jobs:
 
       - run:
           name: Running server test
-          command: cd server && ls &&  yarn install & npm run deploy
+          command: cd server && ls &&  yarn install && npm run build 
       - run:
           name: Running client test
-          command: cd client && ls &&  yarn install  && npm run build
+          command: cd client && ls &&  yarn install  && npm run deploy 
   # test:
   #     docker: 
   #       - image: circleci/node:8
