@@ -32,6 +32,9 @@ jobs:
       - image: redis:4.0.1
     steps:
       - run:
+          name: install awscli
+          command:  pip install awscli --upgrade --user 
+      - run:
           name: Running server build
           command: cd server && ls &&  yarn install  
       - run:
