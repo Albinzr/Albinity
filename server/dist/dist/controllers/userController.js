@@ -8,7 +8,9 @@ var _userModel = require('../model/userModel');
 
 var _userModel2 = _interopRequireDefault(_userModel);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
 
 var userController = {};
 
@@ -58,7 +60,6 @@ userController.login = function (req, res) {
 	var _req$body2 = req.body,
 	    username = _req$body2.username,
 	    password = _req$body2.password;
-
 
 	console.log(username, password, '...........');
 

@@ -24,10 +24,11 @@ var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
 
 var Schema = _mongoose2.default.Schema;
-
 
 var postController = {};
 
@@ -45,7 +46,6 @@ postController.createPost = function (req, res) {
 		    active = _req$body.active,
 		    mainImage = _req$body.mainImage,
 		    category = _req$body.category;
-
 
 		var _post = new _postModel2.default({
 			heading: heading,
@@ -259,7 +259,6 @@ postController.updatePost = function (req, res) {
 
 postController.deletePost = function (req, res) {
 	var id = req.body.id;
-
 
 	_postModel2.default.findOne({
 		_id: id

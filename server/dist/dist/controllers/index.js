@@ -29,7 +29,9 @@ var _tagController = require('./tagController');
 
 var _tagController2 = _interopRequireDefault(_tagController);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
 
 exports.userController = _userController2.default;
 exports.searchController = _searchController2.default;

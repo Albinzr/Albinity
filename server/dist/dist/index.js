@@ -8,7 +8,9 @@ var _os = require("os");
 
 var _os2 = _interopRequireDefault(_os);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
 
 if (_cluster2.default.isMaster) {
 	for (var i = 0; i < _os2.default.cpus().length; i++) {
@@ -18,6 +20,5 @@ if (_cluster2.default.isMaster) {
 		console.log("worker " + worker.process.pid + " died");
 	});
 } else {
-	console.log(process.env.NODE_ENV);
 	require("./server");
 }
