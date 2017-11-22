@@ -11,5 +11,11 @@ jobs:
 
       - run:
           name: Running server test
-          command: cd server && ls &&  yarn install && npm test
- 
+          command: cd server && ls &&  yarn install 
+      - run:
+          name: Running client test
+          command: cd client && ls &&  yarn install 
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
