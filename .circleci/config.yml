@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: install awscli
-          command:  apt-get update && apt-get install -y awscli
+          command:  sudo apt-get update && sudo apt-get install -y awscli
       - run:
           name: Running server build
           command: cd server && ls &&  yarn install  
