@@ -8,8 +8,8 @@ jobs:
       - image: redis:4.0.1
     steps:
       - checkout
-      
-      - run: Server test
+
+      - run:
           name: Running server test
           command: cd server && ls &&  yarn install && npm test
  
