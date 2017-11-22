@@ -8,7 +8,5 @@ jobs:
       - checkout
       - run: pwd
       - run: ls
-      - run: cd server && ls
-      - run: pwd
-      - run: yarn install
-      - run: npm test
+      - run: cd server && ls &&  yarn install && npm test
+ 
