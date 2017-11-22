@@ -14,7 +14,7 @@ jobs:
           command: cd server && ls &&  yarn install  
       - run:
           name: Running client build
-          command: cd client && ls &&  yarn install  && npm run deploy CI=false
+          command: cd client && ls &&  yarn install  && CI=false npm run deploy 
   test:
     docker: 
       - image: circleci/node:8
