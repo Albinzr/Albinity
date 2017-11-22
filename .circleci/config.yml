@@ -16,12 +16,12 @@ jobs:
           name: Running client build
           command: cd client && ls &&  yarn install  && npm run deploy 
   test:
-      docker: 
-        - image: circleci/node:8
-        - image: mongo:3.4.1
-        - image: redis:4.0.1
-      steps:
-        - checkout
+    docker: 
+      - image: circleci/node:8
+      - image: mongo:3.4.1
+      - image: redis:4.0.1
+    steps:
+      - checkout
 
       - run:
           name: Running server test
