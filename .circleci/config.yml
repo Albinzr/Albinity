@@ -4,6 +4,7 @@ jobs:
     working_dircetory: ~/temp
     docker: 
       - image: circleci/node:8
+      - image: mongo:3.4.1
     steps:
       - checkout
       - run: pwd
