@@ -9,9 +9,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install awscli
-          command:  sudo apt-get update && sudo apt-get install -y awscli
-      - run:
           name: Running server build
           command: cd server && ls &&  yarn install  
       - run:
@@ -44,13 +41,16 @@ jobs:
       - checkout
       - run:
           name: install awscli
-          command:  pip install awscli --upgrade --user 
+          command:  sudo apt-get update && sudo apt-get install -y awscli
       - run:
           name: Running server test2
           command: cd server && ls &&  yarn install && npm run test 
       - run:
           name: Running client test2
           command: cd client && ls &&  yarn install  && npm run test
+      -run:
+        name: final 
+        command: aws s3 sync ~/rian s3://rian-s3-dev/ --delete
 
 workflows:
   version: 2
