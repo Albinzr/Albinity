@@ -7,5 +7,6 @@ jobs:
     steps:
       - checkout
       - run: cd server
+      - run: pwd
       - run: yarn install
       - run: npm test
