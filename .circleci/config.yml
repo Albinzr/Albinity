@@ -6,7 +6,7 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
-      - run: cd server
       - run: pwd
+      - run: ls
       - run: yarn install
       - run: npm test
