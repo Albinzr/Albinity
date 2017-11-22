@@ -33,7 +33,7 @@
 	},
 	"scripts": {
 		"start": "REACT_APP_ENV=development react-scripts start ",
-		"deploy": "REACT_APP_ENV=production react-scripts build && ./run",
+		"deploy": "REACT_APP_ENV=production react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"
 	}
