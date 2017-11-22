@@ -21,8 +21,6 @@ jobs:
       - image: mongo:3.4.1
       - image: redis:4.0.1
     steps:
-      - checkout
-
       - run:
           name: Running server test
           command: cd server && ls &&  yarn install && npm run test 
@@ -37,10 +35,10 @@ workflows:
       - test:
           requires:
             - build
-      - deploy-job:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
+      # - deploy-job:
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only: master
 
