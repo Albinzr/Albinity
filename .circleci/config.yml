@@ -41,6 +41,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install awscli
+          command:  pip install awscli --upgrade --user 
+      - run:
           name: Running server test2
           command: cd server && ls &&  yarn install && npm run test 
       - run:
