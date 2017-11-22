@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: install awscli
-          command:  curl -O https://bootstrap.pypa.io/get-pip.py && pip install awscli --upgrade --user 
+          command:  apt-get update && apt-get install -y awscli
       - run:
           name: Running server build
           command: cd server && ls &&  yarn install  
