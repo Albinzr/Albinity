@@ -23,6 +23,8 @@ jobs:
       - image: mongo:3.4.1
       - image: redis:4.0.1
     steps:
+      - checkout
+
       - run:
           name: Running server test
           command: cd server && ls &&  yarn install && npm run test 
@@ -31,11 +33,13 @@ jobs:
           command: cd client && ls &&  yarn install  && npm run test 
   deploy:
     working_dircetory: ~/temp
+    
     docker: 
       - image: circleci/node:8
       - image: mongo:3.4.1
       - image: redis:4.0.1
     steps:
+      - checkout
       - run:
           name: Running server test2
           command: cd server && ls &&  yarn install && npm run test 
@@ -52,6 +56,8 @@ workflows:
           requires:
             - build
       - deploy:
+          requires:
+            - test
           filters:
             branches:
               only: master
