@@ -27,21 +27,21 @@ jobs:
       - run:
           name: Running client test
           command: cd client && ls &&  yarn install  && npm run test 
-  deploy:
-      docker: 
-      - image: circleci/node:8
-      - image: mongo:3.4.1
-      - image: redis:4.0.1
-    steps:
-      - run:
-          name: install awscli
-          command:  pip install awscli --upgrade --user 
-      - run:
-          name: Running server build
-          command: cd server && ls &&  yarn install  
-      - run:
-          name: Running client build
-          command: cd client && ls &&  yarn install  && unset CI npm run deploy 
+  # deploy:
+  #     docker: 
+  #     - image: circleci/node:8
+  #     - image: mongo:3.4.1
+  #     - image: redis:4.0.1
+  #   steps:
+  #     - run:
+  #         name: install awscli
+  #         command:  pip install awscli --upgrade --user 
+  #     - run:
+  #         name: Running server build
+  #         command: cd server && ls &&  yarn install  
+  #     - run:
+  #         name: Running client build
+  #         command: cd client && ls &&  yarn install  && unset CI npm run deploy 
 
 
 workflows:
