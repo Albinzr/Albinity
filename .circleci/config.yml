@@ -15,6 +15,7 @@ jobs:
       - run:
           name: Running client build
           command: cd client && ls &&  yarn install  && unset CI npm run deploy 
+
   test:
     docker: 
       - image: circleci/node:8
@@ -27,6 +28,7 @@ jobs:
       - run:
           name: Running client test
           command: cd client && ls &&  yarn install  && npm run test 
+          
   deploy:
     docker: 
       - image: circleci/node:8
@@ -36,12 +38,6 @@ jobs:
       - run:
           name: install awscli
           command:  pip install awscli --upgrade --user 
-      - run:
-          name: Running server test
-          command: cd server && ls &&  yarn install && npm run test 
-      - run:
-          name: Running client test
-          command: cd client && ls &&  yarn install  && npm run test 
 
 workflows:
   version: 2
