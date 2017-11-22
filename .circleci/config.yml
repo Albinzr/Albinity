@@ -17,6 +17,7 @@ jobs:
           command: cd client && ls &&  yarn install  && unset CI npm run deploy 
 
   test:
+    working_dircetory: ~/temp
     docker: 
       - image: circleci/node:8
       - image: mongo:3.4.1
@@ -28,8 +29,8 @@ jobs:
       - run:
           name: Running client test
           command: cd client && ls &&  yarn install  && npm run test 
-
   jj:
+    working_dircetory: ~/temp
     docker: 
       - image: circleci/node:8
       - image: mongo:3.4.1
