@@ -11,7 +11,7 @@ jobs:
 
       - run:
           name: Running server build
-          command: cd server && ls &&  yarn install && npm run build 
+          command: cd server && ls &&  yarn install  
       - run:
           name: Running client build
           command: cd client && ls &&  yarn install  && npm run deploy 
