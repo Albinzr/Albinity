@@ -21,12 +21,14 @@ jobs:
       - image: mongo:3.4.1
       - image: redis:4.0.1
     steps:
-       - run:
-          name: Deploy to S3 if tests pass and branch is Master
-          command: aws s3 sync jekyll/_site/docs s3://circle-production-static-site/docs/ --delete 
+      - run:
+          name: Running server test
+          command: cd server && ls &&  yarn install && npm run test 
+      - run:
+          name: Running client test
+          command: cd client && ls &&  yarn install  && npm run test 
   deploy:
-    working_dircetory: ~/temp
-    docker: 
+      docker: 
       - image: circleci/node:8
       - image: mongo:3.4.1
       - image: redis:4.0.1
