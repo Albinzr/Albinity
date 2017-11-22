@@ -37,10 +37,10 @@ workflows:
       - test:
           requires:
             - build
-      # - deploy-job:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: master
+      - deploy-job:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
 
