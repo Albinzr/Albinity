@@ -16,19 +16,19 @@ jobs:
           name: Running client build
           command: cd client && ls &&  yarn install  && unset CI npm run deploy 
 
-  test:
-    working_dircetory: ~/temp
-    docker: 
-      - image: circleci/node:8
-      - image: mongo:3.4.1
-      - image: redis:4.0.1
-    steps:
-      - run:
-          name: Running server test
-          command: cd server && ls &&  yarn install && npm run test 
-      - run:
-          name: Running client test
-          command: cd client && ls &&  yarn install  && npm run test 
+  # test:
+  #   working_dircetory: ~/temp
+  #   docker: 
+  #     - image: circleci/node:8
+  #     - image: mongo:3.4.1
+  #     - image: redis:4.0.1
+  #   steps:
+  #     - run:
+  #         name: Running server test
+  #         command: cd server && ls &&  yarn install && npm run test 
+  #     - run:
+  #         name: Running client test
+  #         command: cd client && ls &&  yarn install  && npm run test 
   jj:
     working_dircetory: ~/temp
     docker: 
@@ -43,18 +43,18 @@ jobs:
           name: Running client test2
           command: cd client && ls &&  yarn install  && npm run test
 
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-      # - deploy:
-      #     requires:
-      #       - test
-          filters:
-            branches:
-              only: master
+# workflows:
+#   version: 2
+#   build_and_test:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build
+#       # - deploy:
+#       #     requires:
+#       #       - test
+#           filters:
+#             branches:
+#               only: master
 
