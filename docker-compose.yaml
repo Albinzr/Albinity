@@ -1,0 +1,27 @@
+
+version: "2"
+
+services:
+
+  node-deploy:
+    image: cultureamp/docker-node-js
+
+  mongodb-deploy:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  redis-deploy:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  jenkins-deploy:
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - "jenkins-data:/var/jenkins_home"
+volumes:
+  jenkins-data:
